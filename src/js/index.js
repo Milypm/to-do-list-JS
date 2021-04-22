@@ -31,7 +31,6 @@ const setMain = () => {
 
 const startProject = () => {
   const content = document.getElementById('content');
-  content.textContent = 'Hello!';
   content.appendChild(setHeader());
   content.appendChild(setMain());
 };

@@ -1,8 +1,8 @@
-import setLeftView from '../dom/leftView';
-import setMiddleView from '../dom/middleView';
-import setRightView from '../dom/rightView';
+import setLeftView from './dom/leftView';
+import setMiddleView from './dom/middleView';
+import setRightView from './dom/rightView';
 
-require('.../css/style.css');
+require('../css/style.css');
 
 const setHeader = () => {
   const header = document.createElement('header');

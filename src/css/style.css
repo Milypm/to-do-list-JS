@@ -1,36 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
 body {
   width: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .main-header {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 20px 0;
-  background: green;
+  background: #4e9a6a;
   color: #fff;
+  font-size: 20px;
   height: 100px;
 }
 
 .main-container {
   display: grid;
-  grid-template-columns: 22% 39% 39%;
+  grid-template-columns: 25% 37.5% 37.5%;
   width: 100%;
   height: calc(100vh - 100px);
-  border: 2px solid black;
 }
 
 .column-view {
   display: flex;
   flex-direction: column;
-  border: 2px solid black;
+  background: #d0ecda;
+  margin: 0 2.5px 0 2.5px;
   padding: 25px 0 25px 25px;
   height: 100%;
 }
 
-.mylists-title-btn {
+.mylists-maincontainer {
   width: 90%;
+  padding-bottom: 30px;
+  border-bottom: 3px solid #fff;
+}
+
+.mylists-title-btn {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
@@ -43,54 +54,124 @@ body {
 
 .fa-plus {
   font-size: 20px;
-  padding: 0;
+  padding: 5px;
+  margin: 0;
+  border-radius: 50%;
 }
 
-.mylists-btn {
+.plus-btn {
   border: none;
   background: transparent;
-  border-radius: 8px;
-  padding: 5px 8px 2px 8px;
+  padding: 0 4px 0 4px;
+  border-radius: 50%;
 }
 
-.mylists-btn:hover {
-  background: #d0e1ce;
+.plus-btn:hover {
+  background: #96ccaa;
 }
 
 .column-view form {
   width: 90%;
-  margin-bottom: 50px;
 }
 
 .new-project-btn {
   margin-top: 10px;
   margin-right: 10px;
-  padding: 2px 10px;
+  padding: 5px 10px;
   border: none;
-  border-radius: 8px;
-  background: tomato;
+  border-radius: 10px;
+  background: #70b088;
   color: #fff;
+  font-size: 15px;
+  font-weight: 500;
 }
 
-.project-form {
+.new-project-btn:hover {
+  opacity: 0.7;
+}
+
+/* .project-form {
   display: none;
+} */
+
+.fa-list-alt {
+  position: absolute;
+  left: 15px;
+  font-size: 20px;
 }
 
-.fa-clipboard-list {
-  margin-left: -115px;
-  font-size: 25px;
+.fa-pen {
+  position: absolute;
+  left: 190px;
+  font-size: 13px;
+}
+
+.fa-trash {
+  position: absolute;
+  left: 215px;
+  font-size: 13px;
+}
+
+.fa-pen:hover,
+.fa-trash:hover {
+  opacity: 0.5;
 }
 
 .default-list-btn {
-  width: 90%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 265px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   background: transparent;
   text-align: start;
-  padding: 8px 0 5px 40px;
+  padding: 8px 0 8px 45px;
   font-size: 18px;
+  margin-top: 20px;
 }
 
 .default-list-btn:hover {
-  background: #d0e1ce;
+  background: #96ccaa;
+}
+
+.default-list-btn span {
+  display: flex;
+  width: 150px;
+}
+
+.myItems-title-btn {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.myItems-title-btn h3 {
+  margin: auto 0;
+}
+
+#add-item-btn {
+  border: none;
+  background: transparent;
+  border-bottom: 1.5px solid;
+  padding: 0;
+}
+
+.plus-btn-sm {
+  font-size: 15px;
+  margin: 0;
+}
+
+#add-item-btn:hover {
+  border: none;
+  border-radius: 10px;
+  padding: 0 10px 0 5px;
+  background: #96ccaa;
+}
+
+#add-item-btn span {
+  margin-left: 3px;
+  font-size: 16px;
+  font-weight: 700;
 }

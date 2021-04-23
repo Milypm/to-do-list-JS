@@ -7,6 +7,7 @@ const setLeftView = () => {
 
   const myListsTitleBtn = document.createElement('div');
   myListsTitleBtn.classList.add('mylists-title-btn');
+  console.log(document.querySelector('.mylists-title-btn'));
 
   const myListsTitle = document.createElement('h3');
   myListsTitle.textContent = 'My Lists';
@@ -72,6 +73,7 @@ const setLeftView = () => {
 //     document.querySelector('#id-project-form').style.display = 'block';
 //   }
 // });
+
 
 // document.querySelector('#id-project-form').addEventListener('click', (e) => {
 //   if (e.target.classList.contains('new-project-btn')) {

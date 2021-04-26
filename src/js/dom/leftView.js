@@ -1,4 +1,4 @@
-import { buildProject } from "../logics/buildProject";
+import buildProject from "../logics/buildProject";
 
 const setLeftView = () => {
   const leftView = document.createElement('div');
@@ -43,6 +43,7 @@ const setLeftView = () => {
 
   const newProjectSaveBtn = document.createElement('button');
   newProjectSaveBtn.classList.add('new-project-btn');
+  newProjectSaveBtn.classList.add('form-save-btn');
   newProjectSaveBtn.setAttribute('id', 'project-save-btn');
   newProjectSaveBtn.textContent = 'Save';
 
@@ -55,19 +56,18 @@ const setLeftView = () => {
   newProjectForm.classList.add('project-form');
   newProjectForm.setAttribute('id', 'id-project-form');
   newProjectForm.addEventListener('click', (e) => {
-    if (e.target.classList.contains('input-formProject')) {
-      if (e.target.classList.contains('new-project-btn')) {
-        e.preventDefault();
-        const name = document.querySelector('#input-formProject').value;
-        if (name === '') {
-          alert('Please fill the name field.');
-        } else {
-          const newProject = createProject(name);
-          buildProject.addProject(newProject);
-          clearFields();
-        }
+    if (e.target.classList.contains('form-save-btn')) {
+      e.preventDefault();
+      const name = document.querySelector('.input-formProject').value;
+      if (name === '') {
+        alert('Please fill the name field.');
+      } else {
+        const newProject = buildProject(name);
+        newProject.addProject();
+        newProjectInput.value = '';
+        document.querySelector('#id-project-form').style.display = 'none';
       }
-    } else {
+    } else if (e.target.classList.contains('form-cancel-btn')) {
       document.querySelector('#id-project-form').style.display = 'none';
     }
     });

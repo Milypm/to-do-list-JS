@@ -1,31 +1,36 @@
-const createProject = (name) => {
-  return name;
-};
-
-const buildProject = () => {
-  let projects = [];
+const buildProject = (name) => {
+  let projects;
   let projectObject = {
     'name': '',
     'content': []
   }
+  let defaultProject = {
+    'name': 'General List',
+    'content': []
+  }
+
+  const projectName = name;
 
   const getProjects = () => {
-    if (localStorage.getItem('projects')[1] === null) {
-      projectObject['name'] = 'Main List';
-      projects.push(projectObject);
+    const storedProjects = localStorage.getItem('projects');
+    if (storedProjects[1] === null) {
+      projects = [defaultProject];
     } else {
       projects = JSON.parse(localStorage.getItem('projects'));
     }
     return projects;
   };
 
-  const addProject = (project) => {
-    const projects = buildProject.getProjects();
-    projects.push(project);
+  const addProject = () => {
+    const projects = getProjects();
+    projectObject['name'] = projectName;
+    projects.push(projectObject);
     localStorage.setItem('projects', JSON.stringify(projects));
   };
+
+  return { projects, getProjects, addProject };
 };
 
-export {
-  createProject, buildProject
+export default {
+  buildProject
 }

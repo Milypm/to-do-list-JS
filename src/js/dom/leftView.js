@@ -49,6 +49,7 @@ const setLeftView = () => {
 
   const newProjectCancelBtn = document.createElement('button');
   newProjectCancelBtn.classList.add('new-project-btn');
+  newProjectCancelBtn.classList.add('form-cancel-btn');
   newProjectCancelBtn.setAttribute('id', 'project-cancel-btn');
   newProjectCancelBtn.textContent = 'Cancel';
 
@@ -70,7 +71,7 @@ const setLeftView = () => {
     } else if (e.target.classList.contains('form-cancel-btn')) {
       document.querySelector('#id-project-form').style.display = 'none';
     }
-    });
+  });
 
   myListsBtn.appendChild(plusBtn);
   myListsTitleBtn.appendChild(myListsTitle);
@@ -88,23 +89,6 @@ const setLeftView = () => {
 
   return leftView;
 };
-
-// document.querySelector('#id-project-form').addEventListener('click', (e) => {
-//   if (e.target.classList.contains('new-project-btn')) {
-//     e.preventDefault();
-//     const name = document.querySelector('#input-formProject').value;
-//     if (name === '') {
-//       alert('Please fill the name field.');
-//     } else {
-//       const newProject = createProject(name);
-//       projectsList(newProject);
-//       buildProject.addProject(newProject);
-//       clearFields();
-//     }
-//   } else {
-//     document.querySelector('#id-project-form').style.display = 'none';
-//   }
-// });
 
 
 // const showLeftView = () => {

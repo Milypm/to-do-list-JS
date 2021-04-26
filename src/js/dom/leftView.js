@@ -7,7 +7,6 @@ const setLeftView = () => {
 
   const myListsTitleBtn = document.createElement('div');
   myListsTitleBtn.classList.add('mylists-title-btn');
-  console.log(document.querySelector('.mylists-title-btn'));
 
   const myListsTitle = document.createElement('h3');
   myListsTitle.textContent = 'My Lists';
@@ -19,6 +18,9 @@ const setLeftView = () => {
   const myListsBtn = document.createElement('button');
   myListsBtn.classList.add('plus-btn');
   myListsBtn.setAttribute('id', 'add-project-btn');
+  myListsBtn.addEventListener('click', function() {
+    document.querySelector('#id-project-form').style.display = 'block';
+  });
 
   const myListsContainer = document.createElement('div');
   myListsContainer.classList.add('mylists-container');
@@ -33,10 +35,6 @@ const setLeftView = () => {
   const defaultList = document.createElement('button');
   defaultList.classList.add('default-list-btn');
   
-  const newProjectForm = document.createElement('form');
-  newProjectForm.classList.add('project-form');
-  newProjectForm.setAttribute('id', 'id-project-form');
-  
   const newProjectInput = document.createElement('input');
   newProjectInput.setAttribute('id', 'input-formProject');
   newProjectInput.type = 'text';
@@ -50,6 +48,26 @@ const setLeftView = () => {
   newProjectCancelBtn.classList.add('new-project-btn');
   newProjectCancelBtn.setAttribute('id', 'project-cancel-btn');
   newProjectCancelBtn.textContent = 'Cancel';
+
+  const newProjectForm = document.createElement('form');
+  newProjectForm.classList.add('project-form');
+  newProjectForm.setAttribute('id', 'id-project-form');
+  newProjectForm.addEventListener('click', (e) => {
+      if (e.target.classList.contains('new-project-btn')) {
+        e.preventDefault();
+        const name = document.querySelector('#input-formProject').value;
+        if (name === '') {
+          alert('Please fill the name field.');
+        } else {
+          const newProject = createProject(name);
+          projectsList(newProject);
+          buildProject.addProject(newProject);
+          clearFields();
+        }
+      } else {
+        document.querySelector('#id-project-form').style.display = 'none';
+      }
+    });
 
   myListsBtn.appendChild(plusBtn);
   myListsTitleBtn.appendChild(myListsTitle);
@@ -67,13 +85,6 @@ const setLeftView = () => {
 
   return leftView;
 };
-
-// document.querySelector('.mylists-title-btn').addEventListener('click', (e) => {
-//   if (e.target.classList.contains('mylists-btn')) {
-//     document.querySelector('#id-project-form').style.display = 'block';
-//   }
-// });
-
 
 // document.querySelector('#id-project-form').addEventListener('click', (e) => {
 //   if (e.target.classList.contains('new-project-btn')) {

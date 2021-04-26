@@ -13,7 +13,7 @@ const buildProject = (name) => {
 
   const getProjects = () => {
     const storedProjects = localStorage.getItem('projects');
-    if (storedProjects[1] === null) {
+    if (storedProjects === null || storedProjects[1] === null) {
       projects = [defaultProject];
     } else {
       projects = JSON.parse(localStorage.getItem('projects'));
@@ -31,6 +31,4 @@ const buildProject = (name) => {
   return { projects, getProjects, addProject };
 };
 
-export default {
-  buildProject
-}
+export default buildProject;

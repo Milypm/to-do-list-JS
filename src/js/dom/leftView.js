@@ -1,3 +1,5 @@
+import { buildProject } from "../logics/buildProject";
+
 const setLeftView = () => {
   const leftView = document.createElement('div');
   leftView.classList.add('column-view');
@@ -36,7 +38,7 @@ const setLeftView = () => {
   defaultList.classList.add('default-list-btn');
   
   const newProjectInput = document.createElement('input');
-  newProjectInput.setAttribute('id', 'input-formProject');
+  newProjectInput.classList.add('input-formProject');
   newProjectInput.type = 'text';
 
   const newProjectSaveBtn = document.createElement('button');
@@ -53,6 +55,7 @@ const setLeftView = () => {
   newProjectForm.classList.add('project-form');
   newProjectForm.setAttribute('id', 'id-project-form');
   newProjectForm.addEventListener('click', (e) => {
+    if (e.target.classList.contains('input-formProject')) {
       if (e.target.classList.contains('new-project-btn')) {
         e.preventDefault();
         const name = document.querySelector('#input-formProject').value;
@@ -60,13 +63,13 @@ const setLeftView = () => {
           alert('Please fill the name field.');
         } else {
           const newProject = createProject(name);
-          projectsList(newProject);
           buildProject.addProject(newProject);
           clearFields();
         }
-      } else {
-        document.querySelector('#id-project-form').style.display = 'none';
       }
+    } else {
+      document.querySelector('#id-project-form').style.display = 'none';
+    }
     });
 
   myListsBtn.appendChild(plusBtn);

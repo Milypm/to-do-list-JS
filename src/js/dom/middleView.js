@@ -19,6 +19,28 @@ const setMiddleView = () => {
   const myTasksBtn = document.createElement('button');
   myTasksBtn.setAttribute('id', 'add-task-btn');
 
+  const descripFormInput = document.createElement('input');
+  descripFormInput.classList.add('task-form-input');
+  descripFormInput.type = 'text';
+
+  const descripFormInput = document.createElement('input');
+  descripFormInput.classList.add('task-form-input');
+  descripFormInput.type = 'text';
+
+  const newProjectSaveBtn = document.createElement('button');
+  newProjectSaveBtn.classList.add('new-project-btn');
+  newProjectSaveBtn.classList.add('form-save-btn');
+  newProjectSaveBtn.setAttribute('id', 'project-save-btn');
+  newProjectSaveBtn.textContent = 'Save';
+
+  const newProjectCancelBtn = document.createElement('button');
+  newProjectCancelBtn.classList.add('new-project-btn');
+  newProjectCancelBtn.classList.add('form-cancel-btn');
+  newProjectCancelBtn.setAttribute('id', 'project-cancel-btn');
+  newProjectCancelBtn.textContent = 'Cancel';
+
+  const myTasksForm = document.createElement('form');
+
   const myTasksList = document.createElement('div');
   myTasksList.classList.add('mytasks-list');
 

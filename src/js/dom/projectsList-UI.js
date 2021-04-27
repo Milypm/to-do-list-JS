@@ -1,4 +1,5 @@
 import buildProject from '../logics/projectsList-Store';
+import setMiddleView from './middleView';
 
 const UI = (() => {
   const displayProjects = () => {
@@ -15,7 +16,10 @@ const UI = (() => {
     name.textContent = `${project}`;
     listItem.innerHTML = `<i class="fas fa-pen"></i>`;
     listItem.innerHTML = `<i class="fas fa-trash"></i>`;
-  
+    listItem.addEventListener('click', function() {
+
+    });
+
     listItem.appendChild(name);
     list.appendChild(listItem);
   };

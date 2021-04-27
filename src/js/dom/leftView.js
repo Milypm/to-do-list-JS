@@ -66,9 +66,9 @@ const setLeftView = () => {
         alert('Please fill the name field.');
       } else {
         buildProject.addProject(name);
+        UI.addProjectToProjects(name);
         UI.clearFields();
         document.querySelector('#id-project-form').style.display = 'none';
-        UI.addProjectToProjects();
       }
     } else if (e.target.classList.contains('form-cancel-btn')) {
       document.querySelector('#id-project-form').style.display = 'none';
@@ -89,7 +89,7 @@ const setLeftView = () => {
   leftView.appendChild(myListsMainContainer);
   leftView.appendChild(defaultList);
 
-  // document.addEventListener('DOMContentLoaded', UI.displayProjects());
+  document.addEventListener('DOMContentLoaded', UI.displayProjects());
 
   return leftView;
 };

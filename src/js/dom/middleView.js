@@ -23,9 +23,9 @@ const setMiddleView = () => {
   descripFormInput.classList.add('task-form-input');
   descripFormInput.type = 'text';
 
-  const descripFormInput = document.createElement('input');
-  descripFormInput.classList.add('task-form-input');
-  descripFormInput.type = 'text';
+  // const descripFormInput = document.createElement('input');
+  // descripFormInput.classList.add('task-form-input');
+  // descripFormInput.type = 'text';
 
   const newProjectSaveBtn = document.createElement('button');
   newProjectSaveBtn.classList.add('new-project-btn');

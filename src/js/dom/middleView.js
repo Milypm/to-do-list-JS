@@ -2,8 +2,8 @@ const setMiddleView = () => {
   const middleView = document.createElement('div');
   middleView.classList.add('column-view');
 
-  const myItemsTitleBtn = document.createElement('div');
-  myItemsTitleBtn.classList.add('myItems-title-btn');
+  const myTasksTitleBtn = document.createElement('div');
+  myTasksTitleBtn.classList.add('myTasks-title-btn');
 
   const middleViewTitle = document.createElement('h3');
   middleViewTitle.textContent = 'General List';
@@ -13,17 +13,20 @@ const setMiddleView = () => {
   plusBtn.classList.add('fa-plus');
   plusBtn.classList.add('plus-btn-sm');
 
-  const addItemTextBtn = document.createElement('span');
-  addItemTextBtn.textContent = 'Add Task';
+  const addTaskTextBtn = document.createElement('span');
+  addTaskTextBtn.textContent = 'Add Task';
 
-  const myItemsBtn = document.createElement('button');
-  myItemsBtn.setAttribute('id', 'add-item-btn');
+  const myTasksBtn = document.createElement('button');
+  myTasksBtn.setAttribute('id', 'add-task-btn');
 
-  myItemsBtn.appendChild(plusBtn);
-  myItemsBtn.appendChild(addItemTextBtn);
-  myItemsTitleBtn.appendChild(middleViewTitle);
-  myItemsTitleBtn.appendChild(myItemsBtn);
-  middleView.appendChild(myItemsTitleBtn);
+  const myTasksList = document.createElement('div');
+  myTasksList.classList.add('mytasks-list');
+
+  myTasksBtn.appendChild(plusBtn);
+  myTasksBtn.appendChild(addTaskTextBtn);
+  myTasksTitleBtn.appendChild(middleViewTitle);
+  myTasksTitleBtn.appendChild(myTasksBtn);
+  middleView.appendChild(myTasksTitleBtn);
 
   return middleView;
 };

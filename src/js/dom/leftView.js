@@ -1,4 +1,5 @@
-import buildProject from "../logics/buildProject";
+import buildProject from "../logics/projectsList-Store";
+import UI from './projectsList-UI';
 
 const setLeftView = () => {
   const leftView = document.createElement('div');
@@ -35,6 +36,7 @@ const setLeftView = () => {
   defaultListText.textContent = 'General List';
 
   const defaultList = document.createElement('button');
+  defaultList.classList.add('projectList-btn');
   defaultList.classList.add('default-list-btn');
   
   const newProjectInput = document.createElement('input');
@@ -63,10 +65,10 @@ const setLeftView = () => {
       if (name === '') {
         alert('Please fill the name field.');
       } else {
-        const newProject = buildProject(name);
-        newProject.addProject();
-        newProjectInput.value = '';
+        buildProject.addProject(name);
+        UI.clearFields();
         document.querySelector('#id-project-form').style.display = 'none';
+        UI.addProjectToProjects();
       }
     } else if (e.target.classList.contains('form-cancel-btn')) {
       document.querySelector('#id-project-form').style.display = 'none';
@@ -87,9 +89,10 @@ const setLeftView = () => {
   leftView.appendChild(myListsMainContainer);
   leftView.appendChild(defaultList);
 
+  // document.addEventListener('DOMContentLoaded', UI.displayProjects());
+
   return leftView;
 };
-
 
 // const showLeftView = () => {
 //   const main = document.getElementById('main');

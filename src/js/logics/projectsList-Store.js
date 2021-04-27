@@ -1,4 +1,4 @@
-const buildProject = (name) => {
+const buildProject = (() => {
   let projects;
   let projectObject = {
     'name': '',
@@ -9,7 +9,7 @@ const buildProject = (name) => {
     'content': []
   }
 
-  const projectName = name;
+  // const projectName = name;
 
   const getProjects = () => {
     const storedProjects = localStorage.getItem('projects');
@@ -21,14 +21,14 @@ const buildProject = (name) => {
     return projects;
   };
 
-  const addProject = () => {
+  const addProject = (name) => {
     const projects = getProjects();
-    projectObject['name'] = projectName;
+    projectObject['name'] = name;
     projects.push(projectObject);
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
   return { projects, getProjects, addProject };
-};
+})();
 
 export default buildProject;

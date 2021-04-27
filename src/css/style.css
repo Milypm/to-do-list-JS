@@ -42,6 +42,7 @@ body {
 
 .mylists-title-btn {
   width: 100%;
+  height: 40px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
@@ -50,23 +51,25 @@ body {
 .column-view h3 {
   font-size: 20px;
   font-weight: 600;
+  margin: auto 0;
 }
 
 .fa-plus {
   font-size: 20px;
-  padding: 5px;
+  padding: 5px 7px;
   margin: 0;
   border-radius: 50%;
+  z-index: 1;
 }
 
 .plus-btn {
   border: none;
   background: transparent;
-  padding: 0 4px 0 4px;
+  padding: 0;
   border-radius: 50%;
 }
 
-.plus-btn:hover {
+.fa-plus:hover {
   background: #96ccaa;
 }
 
@@ -117,7 +120,7 @@ body {
   opacity: 0.5;
 }
 
-.default-list-btn {
+.projectList-btn {
   position: relative;
   display: flex;
   align-items: center;
@@ -128,30 +131,40 @@ body {
   text-align: start;
   padding: 8px 0 8px 45px;
   font-size: 18px;
-  margin-top: 20px;
 }
 
-.default-list-btn:hover {
+.projectList-btn:hover {
   background: #96ccaa;
 }
 
-.default-list-btn span {
+.projectList-btn span {
   display: flex;
   width: 150px;
 }
 
-.myItems-title-btn {
+.mylists-container {
+  width: 100%;
+  height: max-content;
+  margin-top: 25px;
+}
+
+.default-list-btn {
+  margin-top: 20px;
+}
+
+.myTasks-title-btn {
   display: flex;
   width: 90%;
+  height: 40px;
   justify-content: space-between;
   align-items: center;
 }
 
-.myItems-title-btn h3 {
+.myTasks-title-btn h3 {
   margin: auto 0;
 }
 
-#add-item-btn {
+#add-task-btn {
   border: none;
   background: transparent;
   border-bottom: 1.5px solid;
@@ -163,15 +176,16 @@ body {
   margin: 0;
 }
 
-#add-item-btn:hover {
+#add-task-btn:hover {
   border: none;
   border-radius: 10px;
-  padding: 0 10px 0 5px;
+  padding: 5px 10px 6px 5px;
   background: #96ccaa;
 }
 
-#add-item-btn span {
+#add-task-btn span {
   margin-left: 3px;
   font-size: 16px;
   font-weight: 700;
 }
+

@@ -64,10 +64,10 @@ const setLeftView = () => {
     }
   });
 
-  // const displayProjects = () => {
-  //   const projects = buildProject.getProjects();
-  //   projects.forEach((projectObj) => addProjectToProjects(projectObj));
-  // };
+  const displayProjects = () => {
+    const projects = buildProject.getProjects();
+    projects.forEach((projectObj) => addProjectToProjects(projectObj));
+  };
 
   const addProjectToProjects = (project) => {
     let myProjectName;
@@ -105,7 +105,7 @@ const setLeftView = () => {
     listItem.appendChild(editIcon);
     listItem.appendChild(deleteIcon);
     console.log(listItem);
-    list.appendChild(listItem);
+    myListsContainer.appendChild(listItem);
   };
 
   myListsBtn.appendChild(plusBtn);
@@ -123,7 +123,7 @@ const setLeftView = () => {
   leftView.appendChild(myListsMainContainer);
   leftView.appendChild(defaultList);
 
-  //document.addEventListener('DOMContentLoaded', displayProjects());
+  document.addEventListener('DOMContentLoaded', displayProjects());
 
   return leftView;
 };

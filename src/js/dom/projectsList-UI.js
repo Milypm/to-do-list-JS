@@ -37,11 +37,11 @@ const UI = (() => {
     // listItem.addEventListener('click', function() {
 
     // });
-    listItem.appendChild(listIcon);
-    listItem.appendChild(name);
-    listItem.appendChild(editIcon);
-    listItem.appendChild(deleteIcon);
-    list.appendChild(listItem);
+    // listItem.appendChild(listIcon);
+    // listItem.appendChild(name);
+    // listItem.appendChild(editIcon);
+    // listItem.appendChild(deleteIcon);
+    // list.appendChild(listItem);
   };
   
   const clearFields = () => {

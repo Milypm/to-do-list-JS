@@ -4,16 +4,19 @@ import setMiddleView from './middleView';
 const UI = (() => {
   const displayProjects = () => {
     const projects = buildProject.getProjects();
-    projects.forEach((project) => addProjectToProjects(project));
+    projects.forEach((projectObj) => addProjectToProjects(projectObj));
   };
   
   const addProjectToProjects = (project) => {
-    // let myProjectName;
-    // if (typeof project === 'string') {
-    //   myProjectName = project;
-    // } else {
-    //   myProjectName = project.name;
-    // }
+    let myProjectName;
+    if (typeof project === 'string') {
+      myProjectName = project;
+    } else {
+      myProjectName = project.name;
+    }
+
+    const list = document.querySelector('.mylists-container');
+    console.log(list);
     const listItem = document.createElement('button');
     listItem.classList.add('projectList-btn');
 
@@ -22,7 +25,7 @@ const UI = (() => {
     listIcon.classList.add('fa-list-alt');
 
     const name = document.createElement('span');
-    name.textContent = `${project['name']}`;
+    name.textContent = `${myProjectName}`;
 
     const editIcon = document.createElement('i');
     editIcon.classList.add('fas');
@@ -38,6 +41,7 @@ const UI = (() => {
     listItem.appendChild(name);
     listItem.appendChild(editIcon);
     listItem.appendChild(deleteIcon);
+    list.appendChild(listItem);
   };
   
   const clearFields = () => {

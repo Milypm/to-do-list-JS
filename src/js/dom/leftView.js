@@ -19,8 +19,10 @@ const setLeftView = () => {
   myListsBtn.addEventListener('click', function() {
     document.querySelector('#id-project-form').style.display = 'block';
   });
+
   const myListsContainer = document.createElement('div');
   myListsContainer.classList.add('mylists-container');
+
   const listIcon = document.createElement('i');
   listIcon.classList.add('fas');
   listIcon.classList.add('fa-list-alt');
@@ -53,7 +55,7 @@ const setLeftView = () => {
         alert('Please fill the name field.');
       } else {
         buildProject.addProject(name);
-        //UI.addProjectToProjects(name);
+        addProjectToProjects(name); //Passing a string to the addProjectToProjects method
         UI.clearFields();
         document.querySelector('#id-project-form').style.display = 'none';
       }
@@ -61,6 +63,50 @@ const setLeftView = () => {
       document.querySelector('#id-project-form').style.display = 'none';
     }
   });
+
+  // const displayProjects = () => {
+  //   const projects = buildProject.getProjects();
+  //   projects.forEach((projectObj) => addProjectToProjects(projectObj));
+  // };
+
+  const addProjectToProjects = (project) => {
+    let myProjectName;
+    if (typeof project === 'string') {
+      myProjectName = project;
+    } else {
+      myProjectName = project.name;
+    }
+
+    const list = document.querySelector('.mylists-container');
+    console.log(list);
+
+    const listItem = document.createElement('button');
+    listItem.classList.add('projectList-btn');
+
+    const listIcon = document.createElement('i');
+    listIcon.classList.add('fas');
+    listIcon.classList.add('fa-list-alt');
+
+    const name = document.createElement('span');
+    name.textContent = `${myProjectName}`;
+
+    const editIcon = document.createElement('i');
+    editIcon.classList.add('fas');
+    editIcon.classList.add('fa-pen');
+
+    const deleteIcon = document.createElement('i');
+    deleteIcon.classList.add('fas');
+    deleteIcon.classList.add('fa-trash');
+    // listItem.addEventListener('click', function() {
+
+    // });
+    listItem.appendChild(listIcon);
+    listItem.appendChild(name);
+    listItem.appendChild(editIcon);
+    listItem.appendChild(deleteIcon);
+    console.log(listItem);
+    list.appendChild(listItem);
+  };
 
   myListsBtn.appendChild(plusBtn);
   myListsTitleBtn.appendChild(myListsTitle);
@@ -70,17 +116,18 @@ const setLeftView = () => {
   newProjectForm.appendChild(newProjectCancelBtn);
   myListsMainContainer.appendChild(myListsTitleBtn);
   myListsMainContainer.appendChild(newProjectForm);
-  myListsContainer.appendChild(UI.displayProjects());
+  //myListsContainer.appendChild(UI.displayProjects());
   myListsMainContainer.appendChild(myListsContainer);
   defaultList.appendChild(listIcon);
   defaultList.appendChild(defaultListText);
   leftView.appendChild(myListsMainContainer);
   leftView.appendChild(defaultList);
 
-  //document.addEventListener('DOMContentLoaded', UI.displayProjects());
+  //document.addEventListener('DOMContentLoaded', displayProjects());
 
   return leftView;
 };
+
 
 // const showLeftView = () => {
 //   const main = document.getElementById('main');

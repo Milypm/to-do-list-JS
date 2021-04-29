@@ -1,5 +1,6 @@
 import buildProject from "../logics/projectsList-Store";
 import UI from './projectsList-UI';
+import setMiddleView from './middletView';
 
 const setLeftView = () => {
   const leftView = document.createElement('div');
@@ -66,6 +67,7 @@ const setLeftView = () => {
 
   const displayProjects = () => {
     const projects = buildProject.getProjects();
+    projects.shift();
     projects.forEach((projectObj) => addProjectToProjects(projectObj));
   };
 
@@ -106,6 +108,23 @@ const setLeftView = () => {
     listItem.appendChild(deleteIcon);
     console.log(listItem);
     myListsContainer.appendChild(listItem);
+    listItem.addEventListener('click', function () {
+      const projectName = listItem.textContent;
+      const projects = buildProject.getProjects();
+      const findProject = projects.find(function(){
+        if (project.name === projectName){
+          return project;
+        }
+      });
+
+
+      
+      //setMiddleView
+
+    });
+  
+
+
   };
 
   myListsBtn.appendChild(plusBtn);

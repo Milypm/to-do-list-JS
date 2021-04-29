@@ -1,4 +1,4 @@
-const setMiddleView = () => {
+const setMiddleView = (() => {
   const middleView = document.createElement('div');
   middleView.classList.add('column-view');
 
@@ -50,8 +50,12 @@ const setMiddleView = () => {
   myTasksTitleBtn.appendChild(myTasksBtn);
   middleView.appendChild(myTasksTitleBtn);
 
+  const displayProjectDetails = () => {
+
+  }
+
   return middleView;
-};
+})();
 
 // const showMiddleView = () => {
 //   const main = document.getElementById('main');

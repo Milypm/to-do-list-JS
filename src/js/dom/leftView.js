@@ -107,17 +107,14 @@ const setLeftView = () => {
 
     listItem.addEventListener('click', function () {
       const projectName = listItem.textContent;
-      console.log(projectName);
       const projects = buildProject.getProjects();
-      const selectedProject = projects.forEach((project) => {
+      let getProject;
+      projects.forEach((project) => {
         if (project.name === projectName) {
-          console.log(project.name === projectName);
-          console.log(project);
-          return project.name;
+          getProject = project;
         }
       });
-      console.log(selectedProject);
-      setMiddleView.displayProjectDetails(selectedProject);
+      setMiddleView.displayProjectDetails(getProject);
     });
   };
 

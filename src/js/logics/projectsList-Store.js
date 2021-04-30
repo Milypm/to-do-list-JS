@@ -9,8 +9,6 @@ const buildProject = (() => {
     'content': []
   }
 
-  // const projectName = name;
-
   const getProjects = () => {
     const storedProjects = localStorage.getItem('projects');
     if (storedProjects === null || storedProjects[1] === null) {

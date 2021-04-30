@@ -105,13 +105,13 @@ body {
 
 .fa-pen {
   position: absolute;
-  left: 190px;
+  left: 210px;
   font-size: 13px;
 }
 
 .fa-trash {
   position: absolute;
-  left: 215px;
+  left: 240px;
   font-size: 13px;
 }
 
@@ -123,6 +123,7 @@ body {
 .projectList-btn {
   position: relative;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 265px;
   border: none;
@@ -146,7 +147,6 @@ body {
   width: 100%;
   height: max-content;
   margin-top: 25px;
-  border: 2px solid red;
 }
 
 .default-list-btn {
@@ -188,5 +188,39 @@ body {
   margin-left: 3px;
   font-size: 16px;
   font-weight: 700;
+}
+
+.mytasks-form {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  display: none;
+}
+
+.input-date-priority {
+  margin: 5px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-form-input {
+  height: 35px;
+}
+
+.priority-form-input {
+  margin-right: 10px;
+}
+
+.new-task-btn {
+  margin: 0 5px 0 5px;
+}
+
+.mytasks-list {
+  border: 2px solid red;
+  margin-top: 25px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
 }
 

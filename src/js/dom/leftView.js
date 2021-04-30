@@ -1,6 +1,6 @@
 import buildProject from "../logics/projectsList-Store";
 import UI from './projectsList-UI';
-import setMiddleView from './middletView';
+import setMiddleView from './middleView';
 
 const setLeftView = () => {
   const leftView = document.createElement('div');
@@ -79,9 +79,6 @@ const setLeftView = () => {
       myProjectName = project.name;
     }
 
-    const list = document.querySelector('.mylists-container');
-    console.log(list);
-
     const listItem = document.createElement('button');
     listItem.classList.add('projectList-btn');
 
@@ -106,25 +103,22 @@ const setLeftView = () => {
     listItem.appendChild(name);
     listItem.appendChild(editIcon);
     listItem.appendChild(deleteIcon);
-    console.log(listItem);
     myListsContainer.appendChild(listItem);
+
     listItem.addEventListener('click', function () {
       const projectName = listItem.textContent;
+      console.log(projectName);
       const projects = buildProject.getProjects();
-      const findProject = projects.find(function(){
-        if (project.name === projectName){
-          return project;
+      const selectedProject = projects.forEach((project) => {
+        if (project.name === projectName) {
+          console.log(project.name === projectName);
+          console.log(project);
+          return project.name;
         }
       });
-
-
-      
-      //setMiddleView
-
+      console.log(selectedProject);
+      setMiddleView.displayProjectDetails(selectedProject);
     });
-  
-
-
   };
 
   myListsBtn.appendChild(plusBtn);
@@ -135,7 +129,6 @@ const setLeftView = () => {
   newProjectForm.appendChild(newProjectCancelBtn);
   myListsMainContainer.appendChild(myListsTitleBtn);
   myListsMainContainer.appendChild(newProjectForm);
-  //myListsContainer.appendChild(UI.displayProjects());
   myListsMainContainer.appendChild(myListsContainer);
   defaultList.appendChild(listIcon);
   defaultList.appendChild(defaultListText);
@@ -146,12 +139,5 @@ const setLeftView = () => {
 
   return leftView;
 };
-
-
-// const showLeftView = () => {
-//   const main = document.getElementById('main');
-//   main.textContent = '';
-//   main.appendChild(setLeftView());
-// };
 
 export default setLeftView;

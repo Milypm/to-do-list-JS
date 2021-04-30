@@ -23,7 +23,7 @@ const setMain = () => {
   main.setAttribute('id', 'main');
 
   main.appendChild(setLeftView());
-  main.appendChild(setMiddleView());
+  main.appendChild(setMiddleView.setMiddle());
   main.appendChild(setRightView());
 
   return main;

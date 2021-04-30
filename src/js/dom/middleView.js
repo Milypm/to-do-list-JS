@@ -1,3 +1,5 @@
+import buildProject from '../logics/projectsList-Store';
+
 const setMiddleView = (() => {
   const middleView = document.createElement('div');
   middleView.classList.add('column-view');
@@ -43,18 +45,24 @@ const setMiddleView = (() => {
 
   const myTasksList = document.createElement('div');
   myTasksList.classList.add('mytasks-list');
+  
+  const setMiddle = () => {
+    myTasksBtn.appendChild(plusBtn);
+    myTasksBtn.appendChild(addTaskTextBtn);
+    myTasksTitleBtn.appendChild(middleViewTitle);
+    myTasksTitleBtn.appendChild(myTasksBtn);
+    middleView.appendChild(myTasksTitleBtn);
 
-  myTasksBtn.appendChild(plusBtn);
-  myTasksBtn.appendChild(addTaskTextBtn);
-  myTasksTitleBtn.appendChild(middleViewTitle);
-  myTasksTitleBtn.appendChild(myTasksBtn);
-  middleView.appendChild(myTasksTitleBtn);
+    return middleView;
+  };
+  
 
-  const displayProjectDetails = () => {
+  const displayProjectDetails = (project) => {
+    
 
-  }
+  };
 
-  return middleView;
+  return { setMiddle, displayProjectDetails };
 })();
 
 // const showMiddleView = () => {

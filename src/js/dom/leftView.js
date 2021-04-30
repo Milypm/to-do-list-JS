@@ -114,7 +114,7 @@ const setLeftView = () => {
           getProject = project;
         }
       });
-      setMiddleView.displayProjectDetails(getProject);
+      setMiddleView.displayProjectMiddle(getProject);
     });
   };
 

@@ -123,13 +123,16 @@ const setMiddleView = (() => {
   };
   
 
-  const displayProjectDetails = (project) => {
+  const displayProjectMiddle = (project) => {
     middleViewTitle.textContent = project.name;
-    let currentProject = project.name;
 
   };
 
-  return { setMiddle, displayProjectDetails };
+  const displayTasks = () => {
+
+  };
+
+  return { setMiddle, displayProjectMiddle, displayTasks };
 })();
 
 export default setMiddleView;

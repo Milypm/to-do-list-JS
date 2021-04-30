@@ -9,17 +9,17 @@ const buildTask = (() => {
   }
 
   const addTask = (project, description, date, priority) => {
+    let currentProject;
     const projects = buildProject.getProjects();
-    const selectedProject = projects.find(function() {
-      if (project) {
-        return true;
+    projects.forEach((projectObj) => {
+      if (project === projectObj.name) {
+        currentProject = projectObj;
       }
     });
-    const content = selectedProject.content;
     task.description = description;
     task.dueDate = date;
     task.priority = priority;
-    content.push(task);
+    currentProject.content.push(task);
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 

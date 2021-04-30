@@ -92,6 +92,8 @@ const setMiddleView = (() => {
         alert('Please fill in description and date fields');
       } else {
         buildTask.addTask(currentProject, description, date, priority);
+        addTaskToProjects(currentProject);
+        document.querySelector('#mytasks-form').style.display = 'none';
       }
     }
   });
@@ -129,7 +131,17 @@ const setMiddleView = (() => {
   };
 
   const displayTasks = () => {
+    const projects = buildProject.getProjects();
+    projects.forEach((projectObj) => addTaskToProjects(projectObj));
+  };
 
+  const addTaskToProjects = (project) => {
+    let myProjectName;
+    if (typeof project === 'string') {
+      myProjectName = project;
+    } else {
+      myProjectName = project.name;
+    }
   };
 
   return { setMiddle, displayProjectMiddle, displayTasks };

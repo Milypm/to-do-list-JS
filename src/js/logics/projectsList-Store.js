@@ -26,6 +26,17 @@ const buildProject = (() => {
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
+  // const findProject = (project) => {
+  //   let currentProject;
+  //   const projects = buildProject.getProjects();
+  //   projects.forEach((projectObj) => {
+  //     if (project === projectObj.name) {
+  //       currentProject = projectObj;
+  //     }
+  //   });
+  //   return currentProject;
+  // };
+
   return { projects, getProjects, addProject };
 })();
 

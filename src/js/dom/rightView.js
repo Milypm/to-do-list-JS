@@ -53,11 +53,11 @@ const setRightView = (() => {
 
     const dueDateDetail = document.createElement('p');
     dueDateDetail.classList.add('description-detail');
-    dueDateDetail.textContent = 'Due Date: ';
+    dueDateDetail.textContent = `Due Date: ${selectedTask.dueDate}`;
 
     const priorityDetail = document.createElement('p');
     priorityDetail.classList.add('description-detail');
-    priorityDetail.textContent = 'Priority: ';
+    priorityDetail.textContent = `Priority: ${selectedTask.priority}`;
 
     descriptionDetail.appendChild(taskIcon1);
     dueDateDetail.appendChild(taskIcon2);
@@ -67,7 +67,14 @@ const setRightView = (() => {
     detailsContainer.appendChild(priorityDetail);
   };
 
-  return { setRight, displayTaskDetails };
+  const clearDetails = () => {
+    const detailsToRemove = document.querySelector('.details-container');
+    while (detailsToRemove.firstChild) {
+      detailsToRemove.removeChild(detailsToRemove.lastElementChild);
+    }
+  };
+
+  return { setRight, displayTaskDetails, clearDetails };
 })();
 
 export default setRightView;

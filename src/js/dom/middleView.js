@@ -88,7 +88,6 @@ const setMiddleView = (() => {
       const description = document.querySelector('#description-input').value;
       const date = document.querySelector('#date-input').value;
       const priority = document.querySelector('#priority-input').value;
-      console.log(priority);
       const newTask = description;
       const currentProject = middleViewTitle.textContent;
       if (description === '' || date === 'mm / dd / yyyy') {
@@ -103,6 +102,9 @@ const setMiddleView = (() => {
 
   const myTasksList = document.createElement('div');
   myTasksList.classList.add('mytasks-list');
+  let taskItem;
+  let taskIcon;
+  let taskDescription;
   
   const setMiddle = () => {
     myTasksBtn.appendChild(plusBtn);
@@ -141,7 +143,6 @@ const setMiddleView = (() => {
   const displayProjectMiddle = (project) => {
     middleViewTitle.textContent = project.name;
     project.content.forEach((taskObj) => addTaskToProject(taskObj));
-    //console.log('hello');
   };
 
   const addTaskToProject = (task) => {
@@ -151,18 +152,17 @@ const setMiddleView = (() => {
     } else {
       myTask = task.description;
     }
-
-    const taskItem = document.createElement('button');
+  
+    taskItem = document.createElement('button');
     taskItem.classList.add('task-btn');
-    //console.log(taskItem);
-    const taskIcon = document.createElement('i');
+
+    taskIcon = document.createElement('i');
     taskIcon.classList.add('fas');
     taskIcon.classList.add('fa-check-circle');
-    //console.log(taskIcon);
-    const taskDescription = document.createElement('span');
+
+    taskDescription = document.createElement('span');
     taskDescription.classList.add('task-description');
     taskDescription.textContent = `${myTask}`;
-    //console.log(taskDescription);
 
     taskItem.appendChild(taskIcon);
     taskItem.appendChild(taskDescription);
@@ -170,13 +170,15 @@ const setMiddleView = (() => {
 
     taskItem.addEventListener('click', (e) => {
       const clickedTask = e.target.textContent;
+      setRightView.clearDetails();
       setRightView.displayTaskDetails(clickedTask);
     });
   };
 
-  const clearTasks = (projectName) => {
-    if (projectName !== middleViewTitle.textContent) {
-      
+  const clearTasks = () => {
+    const tasksToRemove = document.querySelector('.mytasks-list');
+    while (tasksToRemove.firstChild) {
+      tasksToRemove.removeChild(tasksToRemove.lastElementChild);
     }
   };
 

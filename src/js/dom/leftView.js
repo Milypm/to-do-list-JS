@@ -129,7 +129,6 @@ const setLeftView = (() => {
     
     myListsAndGeneralContainer.addEventListener('click', (e) => {
       if (e.target.classList.contains('projectList-btn')) {
-        //setMiddleView.clearTasks(e.target.textContent);
         const projects = buildProject.getProjects();
         let getProject;
         projects.forEach((project) => {
@@ -137,6 +136,7 @@ const setLeftView = (() => {
             getProject = project;
           }
         });
+        setMiddleView.clearTasks();
         setMiddleView.displayProjectMiddle(getProject);
       }
     });

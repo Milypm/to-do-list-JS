@@ -1,5 +1,7 @@
 import buildProject from './projectsList-Store';
 
+const { format } = require('date-fns');
+
 const buildTask = (() => {
   let task = {
     'description': '',
@@ -10,6 +12,7 @@ const buildTask = (() => {
 
   const addTask = (project, description, date, priority) => {
     let currentProject;
+    const newDate = format(new Date(date), 'd MMMM yyyy');
     const projects = buildProject.getProjects();
     projects.forEach((projectObj) => {
       if (project === projectObj.name) {
@@ -17,7 +20,7 @@ const buildTask = (() => {
       }
     });
     task.description = description;
-    task.dueDate = date;
+    task.dueDate = newDate;
     task.priority = priority;
     currentProject.content.push(task);
     localStorage.setItem('projects', JSON.stringify(projects));

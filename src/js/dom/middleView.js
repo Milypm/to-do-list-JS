@@ -28,6 +28,7 @@ const setMiddleView = (() => {
 
   const descripFormInput = document.createElement('input');
   descripFormInput.classList.add('task-form-input');
+  descripFormInput.setAttribute('id', 'description-input');
   descripFormInput.type = 'text';
   descripFormInput.placeholder = 'Task description';
 
@@ -58,7 +59,7 @@ const setMiddleView = (() => {
 
   const priorityFormInput = document.createElement('select');
   priorityFormInput.classList.add('task-form-input');
-  priorityFormInput.classList.add('priority-form-input')
+  //priorityFormInput.classList.add('priority-form-input');
   priorityFormInput.setAttribute('id', 'priority-input');
 
   const inputDatePriority = document.createElement('div');
@@ -84,12 +85,13 @@ const setMiddleView = (() => {
   myTasksForm.addEventListener('click', (e) => {
     if (e.target.classList.contains('save-task-btn')) {
       e.preventDefault();
-      const description = document.querySelector('.task-form-input').value;
-      const date = document.querySelector('.task-form-input').value;
-      const priority = document.querySelector('.task-form-input').value;
+      const description = document.querySelector('#description-input').value;
+      const date = document.querySelector('#date-input').value;
+      const priority = document.querySelector('#priority-input').value;
+      console.log(priority);
       const newTask = description;
       const currentProject = middleViewTitle.textContent;
-      if (description === '', date === '') {
+      if (description === '' || date === 'mm / dd / yyyy') {
         alert('Please fill in description and date fields');
       } else {
         buildTask.addTask(currentProject, description, date, priority);

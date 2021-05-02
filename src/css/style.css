@@ -8,6 +8,7 @@ body {
 }
 
 .main-header {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +21,8 @@ body {
 
 .main-container {
   display: grid;
-  grid-template-columns: 25% 37.5% 37.5%;
+  grid-template-columns: 30% 37% 32.1%;
+  column-gap: 5px;
   width: 100%;
   height: calc(100vh - 100px);
 }
@@ -29,14 +31,13 @@ body {
   display: flex;
   flex-direction: column;
   background: #d0ecda;
-  margin: 0 2.5px 0 2.5px;
   padding: 25px 0 25px 25px;
   height: 100%;
 }
 
 .mylists-maincontainer {
   width: 90%;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   border-bottom: 3px solid #fff;
 }
 
@@ -95,23 +96,25 @@ body {
 
 .project-form {
   display: none;
+  flex-direction: column;
 }
 
 .fa-list-alt {
   position: absolute;
+  top: 12px;
   left: 15px;
   font-size: 20px;
 }
 
 .fa-pen {
   position: absolute;
-  left: 210px;
+  left: 268px;
   font-size: 13px;
 }
 
 .fa-trash {
   position: absolute;
-  left: 240px;
+  left: 300px;
   font-size: 13px;
 }
 
@@ -125,13 +128,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 265px;
+  width: 100%;
   border: none;
   border-radius: 10px;
   background: transparent;
   text-align: start;
   padding: 8px 0 8px 45px;
   font-size: 18px;
+  z-index: 1;
 }
 
 .projectList-btn:hover {
@@ -151,6 +155,7 @@ body {
 
 .default-list-btn {
   margin-top: 20px;
+  width: 90%;
 }
 
 .myTasks-title-btn {
@@ -191,7 +196,7 @@ body {
 }
 
 .mytasks-form {
-  margin-top: 25px;
+  margin-top: 15px;
   display: flex;
   flex-direction: column;
   display: none;
@@ -217,10 +222,51 @@ body {
 }
 
 .mytasks-list {
-  border: 2px solid red;
   margin-top: 25px;
   width: 90%;
   display: flex;
   flex-direction: column;
 }
+
+.task-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  text-align: start;
+  padding: 8px 0 8px 10px;
+  font-size: 19px;
+}
+
+.task-btn:hover {
+  background: #96ccaa;
+}
+
+.task-description {
+  margin-left: 5px;
+}
+
+.taskdetails-container {
+  width: 90%;
+}
+
+.details-container {
+  margin-top: 25px;
+}
+
+.description-detail {
+  padding-left: 25px;
+  position: relative;
+  font-size: 19px;
+}
+
+.rightViewIcon {
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+
 

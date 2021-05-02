@@ -9,7 +9,6 @@ const buildTask = (() => {
   }
 
   const addTask = (project, description, date, priority) => {
-    //buildProject.findProject(project);
     let currentProject;
     const projects = buildProject.getProjects();
     projects.forEach((projectObj) => {

@@ -1,10 +1,11 @@
 import buildProject from "../logics/projectsList-Store";
-import UI from './projectsList-UI';
 import setMiddleView from './middleView';
 
-const setLeftView = () => {
+const setLeftView = (() => {
   const leftView = document.createElement('div');
   leftView.classList.add('column-view');
+  const myListsAndGeneralContainer = document.createElement('div');
+  myListsAndGeneralContainer.classList.add('mylists-and-general-container');
   const myListsMainContainer = document.createElement('div');
   myListsMainContainer.classList.add('mylists-maincontainer');
   const myListsTitleBtn = document.createElement('div');
@@ -18,7 +19,7 @@ const setLeftView = () => {
   myListsBtn.classList.add('plus-btn');
   myListsBtn.setAttribute('id', 'add-project-btn');
   myListsBtn.addEventListener('click', function() {
-    document.querySelector('#id-project-form').style.display = 'block';
+    document.querySelector('#id-project-form').style.display = 'flex';
   });
 
   const myListsContainer = document.createElement('div');
@@ -45,6 +46,7 @@ const setLeftView = () => {
   newProjectCancelBtn.classList.add('form-cancel-btn');
   newProjectCancelBtn.setAttribute('id', 'project-cancel-btn');
   newProjectCancelBtn.textContent = 'Cancel';
+  const formBtns = document.createElement('div');
   const newProjectForm = document.createElement('form');
   newProjectForm.classList.add('project-form');
   newProjectForm.setAttribute('id', 'id-project-form');
@@ -65,6 +67,26 @@ const setLeftView = () => {
     }
   });
 
+  const setLeft = () => {
+    myListsBtn.appendChild(plusBtn);
+    myListsTitleBtn.appendChild(myListsTitle);
+    myListsTitleBtn.appendChild(myListsBtn);
+    newProjectForm.appendChild(newProjectInput);
+    formBtns.appendChild(newProjectSaveBtn);
+    formBtns.appendChild(newProjectCancelBtn);
+    newProjectForm.appendChild(formBtns);
+    myListsMainContainer.appendChild(myListsTitleBtn);
+    myListsMainContainer.appendChild(newProjectForm);
+    myListsMainContainer.appendChild(myListsContainer);
+    defaultList.appendChild(listIcon);
+    defaultList.appendChild(defaultListText);
+    myListsAndGeneralContainer.appendChild(myListsMainContainer);
+    myListsAndGeneralContainer.appendChild(defaultList);
+    leftView.appendChild(myListsAndGeneralContainer);
+
+    return leftView;
+  };
+
   const displayProjects = () => {
     const projects = buildProject.getProjects();
     projects.shift();
@@ -83,7 +105,7 @@ const setLeftView = () => {
     listItem.classList.add('projectList-btn');
 
     const listIcon = document.createElement('i');
-    listIcon.classList.add('fas');
+    listIcon.classList.add('far');
     listIcon.classList.add('fa-list-alt');
 
     const name = document.createElement('span');
@@ -104,37 +126,25 @@ const setLeftView = () => {
     listItem.appendChild(editIcon);
     listItem.appendChild(deleteIcon);
     myListsContainer.appendChild(listItem);
-
-    listItem.addEventListener('click', function () {
-      const projectName = listItem.textContent;
-      const projects = buildProject.getProjects();
-      let getProject;
-      projects.forEach((project) => {
-        if (project.name === projectName) {
-          getProject = project;
-        }
-      });
-      setMiddleView.displayProjectMiddle(getProject);
+    
+    myListsAndGeneralContainer.addEventListener('click', (e) => {
+      if (e.target.classList.contains('projectList-btn')) {
+        //setMiddleView.clearTasks(e.target.textContent);
+        const projects = buildProject.getProjects();
+        let getProject;
+        projects.forEach((project) => {
+          if (project.name === e.target.textContent) {
+            getProject = project;
+          }
+        });
+        setMiddleView.displayProjectMiddle(getProject);
+      }
     });
   };
 
-  myListsBtn.appendChild(plusBtn);
-  myListsTitleBtn.appendChild(myListsTitle);
-  myListsTitleBtn.appendChild(myListsBtn);
-  newProjectForm.appendChild(newProjectInput);
-  newProjectForm.appendChild(newProjectSaveBtn);
-  newProjectForm.appendChild(newProjectCancelBtn);
-  myListsMainContainer.appendChild(myListsTitleBtn);
-  myListsMainContainer.appendChild(newProjectForm);
-  myListsMainContainer.appendChild(myListsContainer);
-  defaultList.appendChild(listIcon);
-  defaultList.appendChild(defaultListText);
-  leftView.appendChild(myListsMainContainer);
-  leftView.appendChild(defaultList);
-
   document.addEventListener('DOMContentLoaded', displayProjects());
 
-  return leftView;
-};
+  return { setLeft, displayProjects, addProjectToProjects };
+})();
 
 export default setLeftView;

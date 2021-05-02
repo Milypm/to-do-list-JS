@@ -1,5 +1,6 @@
 import buildProject from '../logics/projectsList-Store';
-import buildTask from '../logics/TasksList-Store';
+import buildTask from '../logics/tasksList-Store';
+import setRightView from './rightView';
 
 const setMiddleView = (() => {
   const middleView = document.createElement('div');
@@ -83,16 +84,16 @@ const setMiddleView = (() => {
   myTasksForm.addEventListener('click', (e) => {
     if (e.target.classList.contains('save-task-btn')) {
       e.preventDefault();
-      const currentProject = middleViewTitle.textContent;
       const description = document.querySelector('.task-form-input').value;
       const date = document.querySelector('.task-form-input').value;
       const priority = document.querySelector('.task-form-input').value;
-      //console.log(date, priority);
+      const newTask = description;
+      const currentProject = middleViewTitle.textContent;
       if (description === '', date === '') {
         alert('Please fill in description and date fields');
       } else {
         buildTask.addTask(currentProject, description, date, priority);
-        addTaskToProjects(currentProject);
+        addTaskToProject(newTask);
         document.querySelector('#mytasks-form').style.display = 'none';
       }
     }
@@ -123,28 +124,63 @@ const setMiddleView = (() => {
 
     return middleView;
   };
-  
+
+  const setDefault = () => {
+    const projects = buildProject.getProjects();
+    let getProject;
+    projects.forEach((project) => {
+      if (project.name === 'General List') {
+        getProject = project;
+      }
+    });
+    return getProject;
+  };
 
   const displayProjectMiddle = (project) => {
     middleViewTitle.textContent = project.name;
-
+    project.content.forEach((taskObj) => addTaskToProject(taskObj));
+    //console.log('hello');
   };
 
-  const displayTasks = () => {
-    const projects = buildProject.getProjects();
-    projects.forEach((projectObj) => addTaskToProjects(projectObj));
-  };
-
-  const addTaskToProjects = (project) => {
-    let myProjectName;
-    if (typeof project === 'string') {
-      myProjectName = project;
+  const addTaskToProject = (task) => {
+    let myTask;
+    if (typeof task === 'string') {
+      myTask = task;
     } else {
-      myProjectName = project.name;
+      myTask = task.description;
+    }
+
+    const taskItem = document.createElement('button');
+    taskItem.classList.add('task-btn');
+    //console.log(taskItem);
+    const taskIcon = document.createElement('i');
+    taskIcon.classList.add('fas');
+    taskIcon.classList.add('fa-check-circle');
+    //console.log(taskIcon);
+    const taskDescription = document.createElement('span');
+    taskDescription.classList.add('task-description');
+    taskDescription.textContent = `${myTask}`;
+    //console.log(taskDescription);
+
+    taskItem.appendChild(taskIcon);
+    taskItem.appendChild(taskDescription);
+    myTasksList.appendChild(taskItem);
+
+    taskItem.addEventListener('click', (e) => {
+      const clickedTask = e.target.textContent;
+      setRightView.displayTaskDetails(clickedTask);
+    });
+  };
+
+  const clearTasks = (projectName) => {
+    if (projectName !== middleViewTitle.textContent) {
+      
     }
   };
 
-  return { setMiddle, displayProjectMiddle, displayTasks };
+  document.addEventListener('DOMContentLoaded', displayProjectMiddle(setDefault()));
+
+  return { setMiddle, displayProjectMiddle, addTaskToProject, clearTasks };
 })();
 
 export default setMiddleView;

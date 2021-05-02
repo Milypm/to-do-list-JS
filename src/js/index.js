@@ -1,3 +1,4 @@
+import { de } from 'date-fns/locale';
 import setLeftView from './dom/leftView';
 import setMiddleView from './dom/middleView';
 import setRightView from './dom/rightView';
@@ -22,9 +23,9 @@ const setMain = () => {
   main.classList.add('main-container');
   main.setAttribute('id', 'main');
 
-  main.appendChild(setLeftView());
+  main.appendChild(setLeftView.setLeft());
   main.appendChild(setMiddleView.setMiddle());
-  main.appendChild(setRightView());
+  main.appendChild(setRightView.setRight());
 
   return main;
 };

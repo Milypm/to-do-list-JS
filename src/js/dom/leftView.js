@@ -21,10 +21,8 @@ const setLeftView = (() => {
   myListsBtn.addEventListener('click', function() {
     document.querySelector('#id-project-form').style.display = 'flex';
   });
-
   const myListsContainer = document.createElement('div');
   myListsContainer.classList.add('mylists-container');
-
   const listIcon = document.createElement('i');
   listIcon.classList.add('fas');
   listIcon.classList.add('fa-list-alt');
@@ -58,12 +56,12 @@ const setLeftView = (() => {
         alert('Please fill the name field.');
       } else {
         buildProject.addProject(name);
-        addProjectToProjects(name); //Passing a string to the addProjectToProjects method
-        UI.clearFields();
+        addProjectToProjects(name);
+        document.querySelector('.input-formProject').value = '';
         document.querySelector('#id-project-form').style.display = 'none';
       }
     } else if (e.target.classList.contains('form-cancel-btn')) {
-      document.querySelector('#id-project-form').style.display = 'none';
+      document.querySelector('.project-form').style.display = 'none';
     }
   });
 

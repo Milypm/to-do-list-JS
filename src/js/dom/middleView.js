@@ -59,7 +59,6 @@ const setMiddleView = (() => {
 
   const priorityFormInput = document.createElement('select');
   priorityFormInput.classList.add('task-form-input');
-  //priorityFormInput.classList.add('priority-form-input');
   priorityFormInput.setAttribute('id', 'priority-input');
 
   const inputDatePriority = document.createElement('div');
@@ -95,6 +94,7 @@ const setMiddleView = (() => {
       } else {
         buildTask.addTask(currentProject, description, date, priority);
         addTaskToProject(newTask);
+        clearForm();
         document.querySelector('#mytasks-form').style.display = 'none';
       }
     }
@@ -180,6 +180,12 @@ const setMiddleView = (() => {
     while (tasksToRemove.firstChild) {
       tasksToRemove.removeChild(tasksToRemove.lastElementChild);
     }
+  };
+
+  const clearForm = () => {
+    document.getElementById('description-input').value = '';
+    document.getElementById('date-input').value = '';
+    document.getElementById('priority-input').value = 'None';
   };
 
   document.addEventListener('DOMContentLoaded', displayProjectMiddle(setDefault()));

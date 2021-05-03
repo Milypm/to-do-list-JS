@@ -88,12 +88,13 @@ const setMiddleView = (() => {
       const date = document.querySelector('#date-input').value;
       const priority = document.querySelector('#priority-input').value;
       const newTask = description;
+      const newPriority = priority;
       const currentProject = middleViewTitle.textContent;
       if (description === '' || date === 'mm / dd / yyyy') {
         alert('Please fill in description and date fields');
       } else {
         buildTask.addTask(currentProject, description, date, priority);
-        addTaskToProject(newTask);
+        addTaskToProject(newTask, newPriority);
         clearForm();
         document.querySelector('#mytasks-form').style.display = 'none';
       }
@@ -105,6 +106,8 @@ const setMiddleView = (() => {
   let taskItem;
   let taskIcon;
   let taskDescription;
+  let taskDescriptionContainer;
+  let taskPriority;
   
   const setMiddle = () => {
     myTasksBtn.appendChild(plusBtn);
@@ -145,12 +148,28 @@ const setMiddleView = (() => {
     project.content.forEach((taskObj) => addTaskToProject(taskObj));
   };
 
-  const addTaskToProject = (task) => {
+  const addTaskToProject = (task, priority) => {
     let myTask;
+    let myPriority;
+    let color;
     if (typeof task === 'string') {
       myTask = task;
+      myPriority = priority;
     } else {
       myTask = task.description;
+      myPriority = getPriorityFromTask(task);
+    }
+
+    if (myPriority === 'None') {
+      color = '#98928e';
+    } else if (myPriority === 'Urgent') {
+      color = '#ea3c33';
+    } else if (myPriority === 'High') {
+      color = '#f08034';
+    } else if (myPriority === 'Regular') {
+      color = '#e4e53f';
+    } else if (myPriority === 'Low') {
+      color = '#76b62c';
     }
   
     taskItem = document.createElement('button');
@@ -164,15 +183,37 @@ const setMiddleView = (() => {
     taskDescription.classList.add('task-description');
     taskDescription.textContent = `${myTask}`;
 
-    taskItem.appendChild(taskIcon);
-    taskItem.appendChild(taskDescription);
+    taskDescriptionContainer = document.createElement('div');
+
+    taskPriority = document.createElement('i');
+    taskPriority.classList.add('fas');
+    taskPriority.classList.add('fa-exclamation-triangle');
+    taskPriority.style.color = color;
+
+    taskDescriptionContainer.appendChild(taskIcon);
+    taskDescriptionContainer.appendChild(taskDescription);
+    taskItem.appendChild(taskDescriptionContainer);
+    taskItem.appendChild(taskPriority);
     myTasksList.appendChild(taskItem);
 
     taskItem.addEventListener('click', (e) => {
-      const clickedTask = e.target.textContent;
+      const clickedTask = e.target.value;
       setRightView.clearDetails();
       setRightView.displayTaskDetails(clickedTask);
     });
+  };
+
+  const getPriorityFromTask = (taskObject) => {
+    let priority;
+    const projects = buildProject.getProjects();
+    projects.forEach((projectObj) => {
+      projectObj.content.forEach((taskObj) => {
+        if (taskObj.description === taskObject.description) {
+          priority = taskObj.priority;
+        }
+      })
+    });
+    return priority;
   };
 
   const clearTasks = () => {

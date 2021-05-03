@@ -49,7 +49,7 @@ const setLeftView = (() => {
   newProjectForm.classList.add('project-form');
   newProjectForm.setAttribute('id', 'id-project-form');
   newProjectForm.addEventListener('click', (e) => {
-    if (e.target.classList.contains('form-save-btn')) {
+    if (projectName === '' && e.target.classList.contains('form-save-btn')) {
       e.preventDefault();
       const name = document.querySelector('.input-formProject').value;
       if (name === '') {
@@ -60,10 +60,24 @@ const setLeftView = (() => {
         document.querySelector('.input-formProject').value = '';
         document.querySelector('#id-project-form').style.display = 'none';
       }
+    } else if (projectName !== '' && e.target.classList.contains('form-save-btn')) {
+      const newName = document.querySelector('.input-formProject').value;
+      if (newName === '') {
+        alert('Please fill the name field.');
+      } else {
+        console.log('hello');
+        buildProject.editProject(projectToEdit, newName);
+        document.querySelector('.input-formProject').value = '';
+        document.querySelector('#id-project-form').style.display = 'none';
+        projectName = '';
+      }
     } else if (e.target.classList.contains('form-cancel-btn')) {
       document.querySelector('.project-form').style.display = 'none';
     }
   });
+
+  let projectToEdit;
+  let projectName = '';
 
   const setLeft = () => {
     myListsBtn.appendChild(plusBtn);
@@ -116,9 +130,7 @@ const setLeftView = (() => {
     const deleteIcon = document.createElement('i');
     deleteIcon.classList.add('fas');
     deleteIcon.classList.add('fa-trash');
-    // listItem.addEventListener('click', function() {
 
-    // });
     listItem.appendChild(listIcon);
     listItem.appendChild(name);
     listItem.appendChild(editIcon);
@@ -127,17 +139,25 @@ const setLeftView = (() => {
     
     myListsAndGeneralContainer.addEventListener('click', (e) => {
       if (e.target.classList.contains('projectList-btn')) {
-        const projects = buildProject.getProjects();
-        let getProject;
-        projects.forEach((project) => {
-          if (project.name === e.target.textContent) {
-            getProject = project;
-          }
-        });
+        const project = e.target.textContent;
         setMiddleView.clearTasks();
-        setMiddleView.displayProjectMiddle(getProject);
+        setMiddleView.displayProjectMiddle(buildProject.findProject(project));
       }
     });
+
+    listItem.addEventListener('click', (e) => {
+      if (e.target.classList.contains('fa-pen')) {
+        document.querySelector('.input-formProject').value = listItem.textContent;
+        projectName = listItem.textContent;
+        projectToEdit = buildProject.findProject(listItem.textContent);
+        document.querySelector('#id-project-form').style.display = 'flex';
+      } else if (e.target.classList.contains('fa-trash')){
+        const projectToDelete = listItem.textContent;
+        buildProject.deleteProject(projectToDelete);
+        e.target.parentElement.remove();
+      }
+    });
+    return { projectName, projectToEdit };
   };
 
   document.addEventListener('DOMContentLoaded', displayProjects());

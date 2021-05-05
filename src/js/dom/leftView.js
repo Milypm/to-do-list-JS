@@ -48,6 +48,10 @@ const setLeftView = (() => {
   const newProjectForm = document.createElement('form');
   newProjectForm.classList.add('project-form');
   newProjectForm.setAttribute('id', 'id-project-form');
+
+  let projectToEdit;
+  let projectName = '';
+
   newProjectForm.addEventListener('click', (e) => {
     if (projectName === '' && e.target.classList.contains('form-save-btn')) {
       e.preventDefault();
@@ -65,7 +69,6 @@ const setLeftView = (() => {
       if (newName === '') {
         alert('Please fill the name field.');
       } else {
-        console.log('hello');
         buildProject.editProject(projectToEdit, newName);
         document.querySelector('.input-formProject').value = '';
         document.querySelector('#id-project-form').style.display = 'none';
@@ -75,9 +78,6 @@ const setLeftView = (() => {
       document.querySelector('.project-form').style.display = 'none';
     }
   });
-
-  let projectToEdit;
-  let projectName = '';
 
   const setLeft = () => {
     myListsBtn.appendChild(plusBtn);
@@ -124,10 +124,12 @@ const setLeftView = (() => {
     name.textContent = `${myProjectName}`;
 
     const editIcon = document.createElement('i');
+    editIcon.classList.add('edit-icon-left');
     editIcon.classList.add('fas');
     editIcon.classList.add('fa-pen');
 
     const deleteIcon = document.createElement('i');
+    deleteIcon.classList.add('delete-icon-left');
     deleteIcon.classList.add('fas');
     deleteIcon.classList.add('fa-trash');
 

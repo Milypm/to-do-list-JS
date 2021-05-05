@@ -1,4 +1,5 @@
 import buildProject from '../logics/projectsList-Store';
+import buildTask from '../logics/tasksList-Store';
 
 const setRightView = (() => {
   const rightView = document.createElement('div');
@@ -22,8 +23,8 @@ const setRightView = (() => {
   };
 
   const displayTaskDetails = (task) => {
-    const projects = buildProject.getProjects();
     let selectedTask;
+    const projects = buildProject.getProjects();
     projects.forEach((projectObj) => {
       projectObj.content.forEach((taskObj) => {
         if (taskObj.description === task) {
@@ -32,6 +33,7 @@ const setRightView = (() => {
       });
     });
 
+    // ---------- Icons -------- //
     const taskIcon1 = document.createElement('i');
     taskIcon1.classList.add('far');
     taskIcon1.classList.add('fa-check-circle');
@@ -47,24 +49,198 @@ const setRightView = (() => {
     taskIcon3.classList.add('fa-check-circle');
     taskIcon3.classList.add('rightViewIcon');
 
+    // ###################################################### //
     const descriptionDetail = document.createElement('p');
     descriptionDetail.classList.add('description-detail');
     descriptionDetail.textContent = `Description: ${selectedTask.description}`;
+
+    // ---------- Edit & delete icons -------- //
+    const editIcon1 = document.createElement('i');
+    editIcon1.classList.add('edit-icon-right');
+    editIcon1.classList.add('fas');
+    editIcon1.classList.add('fa-pen');
+    editIcon1.addEventListener('click', function() {
+      descriptionForm.style.display = 'flex';
+    });
+
+    const deleteIcon1 = document.createElement('i');
+    deleteIcon1.classList.add('delete-icon-right');
+    deleteIcon1.classList.add('fas');
+    deleteIcon1.classList.add('fa-trash');
+
+    const editDeleteBtns1 = document.createElement('div');
+    editDeleteBtns1.classList.add('edit-delete-btns');
+
+    // ---------- Icon and text container -------- //
+    const descriptionContainer = document.createElement('div');
+    descriptionContainer.classList.add('each-detail-container');
+
+    // ---------- Description form input -------- //
+    const editDescriptionInput = document.createElement('input');
+    editDescriptionInput.classList.add('new-description-input');
+    editDescriptionInput.classList.add('new-description-input');
+
+    const descriptionSaveBtn = document.createElement('button');
+    descriptionSaveBtn.classList.add('description-save-btn');
+    descriptionSaveBtn.textContent = 'Save';
+    const descriptionCancelBtn = document.createElement('button');
+    descriptionCancelBtn.classList.add('description-cancel-btn');
+    descriptionCancelBtn.textContent = 'Cancel';
+
+    const descriptionFormBtns = document.createElement('div');
+
+    // ---------- Description form -------- //
+    const descriptionForm = document.createElement('form');
+    descriptionForm.setAttribute('id', 'description-form');
+    descriptionForm.classList.add('details-form');
+    descriptionForm.addEventListener('click', (e) => {
+      if (e.target.classList.contains('description-save-btn')) {
+        const newDescription = document.querySelector('.new-description-input').value;
+        const project = buildTask.findProject(selectedTask.description);
+        const index = buildTask.findIndex(selectedTask.description);
+        console.log(index);
+        if (newDescription === '') {
+          alert('Please fill the name field.');
+        } else {
+          console.log('hello');
+          buildTask.editTaskDescription(project, newDescription, index);
+          document.querySelector('.new-description-input').value = '';
+          descriptionForm.style.display = 'none';
+        }
+      }
+    });
+
+    // ---------- Icon, text, edit/delete and form container -------- //
+    const descriptionFormContainer = document.createElement('div');
+    descriptionFormContainer.classList.add('details-form-container');
+
+    // ###################################################### //
 
     const dueDateDetail = document.createElement('p');
     dueDateDetail.classList.add('description-detail');
     dueDateDetail.textContent = `Due Date: ${selectedTask.dueDate}`;
 
+    const editIcon2 = document.createElement('i');
+    editIcon2.classList.add('edit-icon-right');
+    editIcon2.classList.add('fas');
+    editIcon2.classList.add('fa-pen');
+    editIcon2.addEventListener('click', function() {
+      dateForm.style.display = 'flex';
+    });
+
+    const deleteIcon2 = document.createElement('i');
+    deleteIcon2.classList.add('delete-icon-right');
+    deleteIcon2.classList.add('fas');
+    deleteIcon2.classList.add('fa-trash');
+
+    const editDeleteBtns2 = document.createElement('div');
+    editDeleteBtns2.classList.add('edit-delete-btns');
+
+    const dateContainer = document.createElement('div');
+    dateContainer.classList.add('each-detail-container');
+
+    const editDateInput = document.createElement('input');
+    editDateInput.classList.add('details-input');
+
+    const dateSaveBtn = document.createElement('button');
+    dateSaveBtn.classList.add('date-save-btn');
+    dateSaveBtn.textContent = 'Save';
+    const dateCancelBtn = document.createElement('button');
+    dateCancelBtn.classList.add('date-cancel-btn');
+    dateCancelBtn.textContent = 'Cancel';
+
+    const dateFormBtns = document.createElement('div');
+
+    const dateForm = document.createElement('form');
+    dateForm.setAttribute('id', 'date-form');
+    dateForm.classList.add('details-form');
+
+    const dateFormContainer = document.createElement('div');
+    dateFormContainer.classList.add('details-form-container');
+
+    // ###################################################### //
+
     const priorityDetail = document.createElement('p');
     priorityDetail.classList.add('description-detail');
     priorityDetail.textContent = `Priority: ${selectedTask.priority}`;
 
+    const editIcon3 = document.createElement('i');
+    editIcon3.classList.add('edit-icon-right');
+    editIcon3.classList.add('fas');
+    editIcon3.classList.add('fa-pen');
+    editIcon3.addEventListener('click', function() {
+      priorityForm.style.display = 'flex';
+    });
+
+    const deleteIcon3 = document.createElement('i');
+    deleteIcon3.classList.add('delete-icon-right');
+    deleteIcon3.classList.add('fas');
+    deleteIcon3.classList.add('fa-trash');
+
+    const editDeleteBtns3 = document.createElement('div');
+    editDeleteBtns3.classList.add('edit-delete-btns');
+
+    const priorityContainer = document.createElement('div');
+    priorityContainer.classList.add('each-detail-container');
+
+    const editPriorityInput = document.createElement('input');
+    editPriorityInput.classList.add('details-input');
+
+    const prioritySaveBtn = document.createElement('button');
+    prioritySaveBtn.classList.add('priority-save-btn');
+    prioritySaveBtn.textContent = 'Save';
+    const priorityCancelBtn = document.createElement('button');
+    priorityCancelBtn.classList.add('priority-cancel-btn');
+    priorityCancelBtn.textContent = 'Cancel';
+
+    const priorityFormBtns = document.createElement('div');
+
+    const priorityForm = document.createElement('form');
+    priorityForm.setAttribute('id', 'priority-form');
+    priorityForm.classList.add('details-form');
+
+    const priorityFormContainer = document.createElement('div');
+    priorityFormContainer.classList.add('details-form-container');
+
     descriptionDetail.appendChild(taskIcon1);
+    descriptionContainer.appendChild(descriptionDetail);
+    editDeleteBtns1.appendChild(editIcon1);
+    editDeleteBtns1.appendChild(deleteIcon1);
+    descriptionContainer.appendChild(editDeleteBtns1);
+    descriptionForm.appendChild(editDescriptionInput);
+    descriptionFormBtns.appendChild(descriptionSaveBtn);
+    descriptionFormBtns.appendChild(descriptionCancelBtn);
+    descriptionForm.appendChild(descriptionFormBtns);
+    descriptionFormContainer.appendChild(descriptionContainer);
+    descriptionFormContainer.appendChild(descriptionForm);
+
     dueDateDetail.appendChild(taskIcon2);
+    dateContainer.appendChild(dueDateDetail);
+    editDeleteBtns2.appendChild(editIcon2);
+    editDeleteBtns2.appendChild(deleteIcon2);
+    dateContainer.appendChild(editDeleteBtns2);
+    dateForm.appendChild(editDateInput);
+    dateFormBtns.appendChild(dateSaveBtn);
+    dateFormBtns.appendChild(dateCancelBtn);
+    dateForm.appendChild(dateFormBtns);
+    dateFormContainer.appendChild(dateContainer);
+    dateFormContainer.appendChild(dateForm);
+
     priorityDetail.appendChild(taskIcon3);
-    detailsContainer.appendChild(descriptionDetail);
-    detailsContainer.appendChild(dueDateDetail);
-    detailsContainer.appendChild(priorityDetail);
+    priorityContainer.appendChild(priorityDetail);
+    editDeleteBtns3.appendChild(editIcon3);
+    editDeleteBtns3.appendChild(deleteIcon3);
+    priorityContainer.appendChild(editDeleteBtns3);
+    priorityForm.appendChild(editPriorityInput);
+    priorityFormBtns.appendChild(prioritySaveBtn);
+    priorityFormBtns.appendChild(priorityCancelBtn);
+    priorityForm.appendChild(priorityFormBtns);
+    priorityFormContainer.appendChild(priorityContainer);
+    priorityFormContainer.appendChild(priorityForm);
+
+    detailsContainer.appendChild(descriptionFormContainer);
+    detailsContainer.appendChild(dateFormContainer);
+    detailsContainer.appendChild(priorityFormContainer);
   };
 
   const clearDetails = () => {

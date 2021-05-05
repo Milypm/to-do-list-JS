@@ -7,7 +7,6 @@ const buildTask = (() => {
     'description': '',
     'dueDate': '',
     'priority': '',
-    //'checklist': {}
   }
 
   const addTask = (project, description, date, priority) => {
@@ -26,7 +25,70 @@ const buildTask = (() => {
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
-  return { addTask };
+  const findProject = (taskDescrip) => {
+    console.log('method findproject');
+    let currentProject;
+    const projects = buildProject.getProjects();
+    projects.forEach((projectObj) => {
+      projectObj.content.forEach((taskObj) => {
+        if (taskDescrip === taskObj.description) {
+          currentProject = projectObj;
+        }
+      });
+    });
+    return currentProject;
+  };
+
+  const findIndex = (taskDescrip) => {
+    let index;
+    let i = 0;
+    const projects = buildProject.getProjects();
+    projects.forEach((projectObj) => {
+      projectObj.content.forEach((taskObj) => {
+        if (taskDescrip === taskObj.description) {
+          index = i;
+        }
+        i++;
+      });
+    });
+    return index;
+  };
+
+  const editTaskDescription = (projectObj, newDescrip, index) => {
+    projectObj.content[index].description = newDescrip;
+    localStorage.setItem('projects', JSON.stringify(projects));
+  };
+
+  const editTaskDate = (projectObj, newDate) => {
+    const projects = buildProject.getProjects();
+    projectObj.dueDate = newDate;
+    localStorage.setItem('projects', JSON.stringify(projects));
+  };
+
+  const editTaskPriority = (projectObj, newPriority) => {
+    const projects = buildProject.getProjects();
+    projectObj.priority = newPriority;
+    localStorage.setItem('projects', JSON.stringify(projects));
+  };
+
+  const deleteTaskDescription = (projectName) => {
+    const projects = buildProject.getProjects();
+    projects.forEach((project, index) => {
+      if (project.name === projectName) {
+        projects.splice(index, 1);
+      }
+    });
+    localStorage.setItem('projects', JSON.stringify(projects));
+  };
+
+  return { addTask,
+          findProject,
+          findIndex,
+          editTaskDescription,
+          editTaskDate,
+          editTaskPriority,
+          deleteTaskDescription
+        };
 })();
 
 export default buildTask;

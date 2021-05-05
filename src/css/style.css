@@ -107,21 +107,25 @@ body {
   z-index: -2;
 }
 
-.fa-pen {
-  position: absolute;
-  left: 268px;
+.fa-pen,
+.fa-trash {
   font-size: 13px;
 }
 
-.fa-trash {
+.edit-icon-left {
+  position: absolute;
+  left: 275px;
+}
+
+.delete-icon-left {
   position: absolute;
   left: 300px;
-  font-size: 13px;
 }
 
 .fa-pen:hover,
 .fa-trash:hover {
   opacity: 0.5;
+  cursor: pointer;
 }
 
 .projectList-btn {
@@ -175,11 +179,14 @@ body {
   margin: auto 0;
 }
 
-#add-task-btn {
+#add-task-btn,
+.edit-details-btn {
   border: none;
   background: transparent;
   border-bottom: 1.5px solid;
-  padding: 0;
+  padding: 5px 0 5px 0;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .plus-btn-sm {
@@ -187,7 +194,8 @@ body {
   margin: 0;
 }
 
-#add-task-btn:hover {
+#add-task-btn:hover,
+.edit-details-btn:hover {
   border: none;
   border-radius: 10px;
   padding: 5px 10px 6px 5px;
@@ -196,8 +204,6 @@ body {
 
 #add-task-btn span {
   margin-left: 3px;
-  font-size: 16px;
-  font-weight: 700;
 }
 
 .mytasks-form {
@@ -261,17 +267,72 @@ body {
 }
 
 .details-container {
-  margin-top: 25px;
+  margin-top: 45px;
 }
 
 .description-detail {
   padding-left: 25px;
   position: relative;
   font-size: 19px;
+  margin-bottom: 15px;
 }
 
 .rightViewIcon {
   position: absolute;
   left: 0;
   top: 5px;
+}
+
+#description-form,
+#date-form,
+#priority-form {
+  display: none;
+}
+
+.details-form-container {
+  margin-bottom: 20px;
+}
+
+.details-form {
+  display: flex;
+  width: 1500px;
+}
+
+.details-input {
+  width: 700px;
+}
+
+.details-form div {
+  display: flex;
+  align-items: center;
+  width: 100px;
+}
+
+.details-form button {
+  padding: 2px 8px 4px 8px;
+  margin-left: 6px;
+  border: none;
+  border-radius: 10px;
+  background: #70b088;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.details-form button:hover {
+  opacity: 0.7;
+  /* border: 1px solid red; */
+}
+
+.each-detail-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.edit-delete-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 40px;
+  margin-top: 10px;
+  margin-left: 20px;
 }

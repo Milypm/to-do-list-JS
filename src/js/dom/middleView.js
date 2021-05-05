@@ -197,7 +197,7 @@ const setMiddleView = (() => {
     myTasksList.appendChild(taskItem);
 
     taskItem.addEventListener('click', (e) => {
-      const clickedTask = e.target.value;
+      const clickedTask = e.target.textContent;
       setRightView.clearDetails();
       setRightView.displayTaskDetails(clickedTask);
     });

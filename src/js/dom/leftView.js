@@ -6,12 +6,14 @@ const setLeftView = (() => {
   leftView.classList.add('column-view');
   const myListsAndGeneralContainer = document.createElement('div');
   myListsAndGeneralContainer.classList.add('mylists-and-general-container');
+
   const myListsMainContainer = document.createElement('div');
   myListsMainContainer.classList.add('mylists-maincontainer');
   const myListsTitleBtn = document.createElement('div');
   myListsTitleBtn.classList.add('mylists-title-btn');
   const myListsTitle = document.createElement('h3');
   myListsTitle.textContent = 'My Lists';
+
   const plusBtn = document.createElement('i');
   plusBtn.classList.add('fas');
   plusBtn.classList.add('fa-plus');
@@ -21,8 +23,10 @@ const setLeftView = (() => {
   myListsBtn.addEventListener('click', function() {
     document.querySelector('#id-project-form').style.display = 'flex';
   });
+
   const myListsContainer = document.createElement('div');
   myListsContainer.classList.add('mylists-container');
+
   const listIcon = document.createElement('i');
   listIcon.classList.add('fas');
   listIcon.classList.add('fa-list-alt');
@@ -31,18 +35,17 @@ const setLeftView = (() => {
   const defaultList = document.createElement('button');
   defaultList.classList.add('projectList-btn');
   defaultList.classList.add('default-list-btn');
+
   const newProjectInput = document.createElement('input');
   newProjectInput.classList.add('input-formProject');
   newProjectInput.type = 'text';
   const newProjectSaveBtn = document.createElement('button');
   newProjectSaveBtn.classList.add('new-project-btn');
   newProjectSaveBtn.classList.add('form-save-btn');
-  newProjectSaveBtn.setAttribute('id', 'project-save-btn');
   newProjectSaveBtn.textContent = 'Save';
-  const newProjectCancelBtn = document.createElement('button');
+  const newProjectCancelBtn = document.createElement('p');
   newProjectCancelBtn.classList.add('new-project-btn');
   newProjectCancelBtn.classList.add('form-cancel-btn');
-  newProjectCancelBtn.setAttribute('id', 'project-cancel-btn');
   newProjectCancelBtn.textContent = 'Cancel';
   const formBtns = document.createElement('div');
   const newProjectForm = document.createElement('form');
@@ -75,6 +78,7 @@ const setLeftView = (() => {
         projectName = '';
       }
     } else if (e.target.classList.contains('form-cancel-btn')) {
+      document.querySelector('.input-formProject').value = '';
       document.querySelector('.project-form').style.display = 'none';
     }
   });

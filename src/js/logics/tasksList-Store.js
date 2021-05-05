@@ -9,6 +9,8 @@ const buildTask = (() => {
     'priority': '',
   }
 
+  let formattedDate;
+
   const addTask = (project, description, date, priority) => {
     let currentProject;
     const newDate = format(new Date(date), 'd MMMM yyyy');
@@ -25,10 +27,10 @@ const buildTask = (() => {
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
+  const projects = buildProject.getProjects();
+
   const findProject = (taskDescrip) => {
-    console.log('method findproject');
     let currentProject;
-    const projects = buildProject.getProjects();
     projects.forEach((projectObj) => {
       projectObj.content.forEach((taskObj) => {
         if (taskDescrip === taskObj.description) {
@@ -42,7 +44,6 @@ const buildTask = (() => {
   const findIndex = (taskDescrip) => {
     let index;
     let i = 0;
-    const projects = buildProject.getProjects();
     projects.forEach((projectObj) => {
       projectObj.content.forEach((taskObj) => {
         if (taskDescrip === taskObj.description) {
@@ -55,29 +56,44 @@ const buildTask = (() => {
   };
 
   const editTaskDescription = (projectObj, newDescrip, index) => {
-    projectObj.content[index].description = newDescrip;
+    const task = projectObj.content[index];
+    task.description = newDescrip;
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
-  const editTaskDate = (projectObj, newDate) => {
-    const projects = buildProject.getProjects();
-    projectObj.dueDate = newDate;
+  const editTaskDate = (projectObj, date, index) => {
+    const newDate = format(new Date(date), 'd MMMM yyyy');
+    const task = projectObj.content[index];
+    task.dueDate = newDate;
+    localStorage.setItem('projects', JSON.stringify(projects));
+    formattedDate = newDate;
+  };
+
+  const getFormattedDate = () => {
+    return formattedDate;
+  };
+
+  const editTaskPriority = (projectObj, newPriority, index) => {
+    const task = projectObj.content[index];
+    task.priority = newPriority;
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
-  const editTaskPriority = (projectObj, newPriority) => {
-    const projects = buildProject.getProjects();
-    projectObj.priority = newPriority;
+  const deleteTaskDescription = (projectObj, index) => {
+    const task = projectObj.content[index];
+    delete task.description;
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
-  const deleteTaskDescription = (projectName) => {
-    const projects = buildProject.getProjects();
-    projects.forEach((project, index) => {
-      if (project.name === projectName) {
-        projects.splice(index, 1);
-      }
-    });
+  const deleteTaskDate = (projectObj, index) => {
+    const task = projectObj.content[index];
+    delete task.dueDate;
+    localStorage.setItem('projects', JSON.stringify(projects));
+  };
+
+  const deleteTaskPriority = (projectObj, index) => {
+    const task = projectObj.content[index];
+    delete task.priority;
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
@@ -86,8 +102,11 @@ const buildTask = (() => {
           findIndex,
           editTaskDescription,
           editTaskDate,
+          getFormattedDate,
           editTaskPriority,
-          deleteTaskDescription
+          deleteTaskDescription,
+          deleteTaskDate,
+          deleteTaskPriority
         };
 })();
 

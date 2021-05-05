@@ -79,6 +79,7 @@ body {
 }
 
 .new-project-btn {
+  cursor: pointer;
   margin-top: 10px;
   margin-right: 10px;
   padding: 5px 10px;
@@ -97,6 +98,11 @@ body {
 .project-form {
   display: none;
   flex-direction: column;
+}
+
+.project-form div {
+  display: flex;
+  align-items: flex-start;
 }
 
 .fa-list-alt {
@@ -274,7 +280,7 @@ body {
   padding-left: 25px;
   position: relative;
   font-size: 19px;
-  margin-bottom: 15px;
+  width: 275px;
 }
 
 .rightViewIcon {
@@ -290,49 +296,58 @@ body {
 }
 
 .details-form-container {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .details-form {
   display: flex;
+  margin-top: 0;
   width: 1500px;
 }
 
 .details-input {
-  width: 700px;
+  width: 200px;
+  margin-left: 20px;
+  padding-left: 5px;
+  height: 34px;
+  border: 1px solid red;
 }
 
 .details-form div {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   width: 100px;
-}
-
-.details-form button {
-  padding: 2px 8px 4px 8px;
-  margin-left: 6px;
-  border: none;
-  border-radius: 10px;
-  background: #70b088;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.details-form button:hover {
-  opacity: 0.7;
-  /* border: 1px solid red; */
-}
-
-.each-detail-container {
-  display: flex;
-  align-items: flex-start;
+  margin-left: 20px;
 }
 
 .edit-delete-btns {
   display: flex;
   justify-content: space-between;
-  width: 40px;
-  margin-top: 10px;
-  margin-left: 20px;
+  width: 36px;
+  padding-top: 5px;
+}
+
+.details-form button,
+.details-form p {
+  padding: 5px 10px;
+  margin-left: 6px;
+  border: none;
+  border-radius: 10px;
+  background: #70b088;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.details-form button:hover,
+.details-form p:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.each-detail-container {
+  display: flex;
+  padding-bottom: -25px;
 }

@@ -64,14 +64,14 @@ const setMiddleView = (() => {
   const inputDatePriority = document.createElement('div');
   inputDatePriority.classList.add('input-date-priority');
 
-  const newTaskSaveBtn = document.createElement('button');
+  const newTaskSaveBtn = document.createElement('p');
   newTaskSaveBtn.classList.add('new-project-btn');
   newTaskSaveBtn.classList.add('new-task-btn');
   newTaskSaveBtn.classList.add('save-task-btn');
   newTaskSaveBtn.setAttribute('id', 'task-save-btn');
   newTaskSaveBtn.textContent = 'Save';
 
-  const newTaskCancelBtn = document.createElement('button');
+  const newTaskCancelBtn = document.createElement('p');
   newTaskCancelBtn.classList.add('new-project-btn');
   newTaskCancelBtn.classList.add('new-task-btn');
   newTaskCancelBtn.classList.add('cancel-task-btn');
@@ -98,6 +98,8 @@ const setMiddleView = (() => {
         clearForm();
         document.querySelector('#mytasks-form').style.display = 'none';
       }
+    } else if (e.target.classList.contains('cancel-task-btn')) {
+      document.querySelector('#mytasks-form').style.display = 'none';
     }
   });
 
@@ -231,7 +233,11 @@ const setMiddleView = (() => {
 
   document.addEventListener('DOMContentLoaded', displayProjectMiddle(setDefault()));
 
-  return { setMiddle, displayProjectMiddle, addTaskToProject, clearTasks };
+  return { setMiddle,
+          displayProjectMiddle,
+          addTaskToProject,
+          clearTasks
+        };
 })();
 
 export default setMiddleView;

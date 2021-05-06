@@ -67,12 +67,7 @@ const buildTask = (() => {
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
-  return { addTask,
-          findProject,
-          findIndex,
-          editTask,
-          deleteTask
-        };
+  return { addTask, findProject, findIndex, editTask, deleteTask };
 })();
 
 export default buildTask;

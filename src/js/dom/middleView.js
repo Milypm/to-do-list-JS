@@ -286,11 +286,7 @@ const setMiddleView = (() => {
 
   document.addEventListener('DOMContentLoaded', displayProjectMiddle(setDefault()));
 
-  return { setMiddle,
-          displayProjectMiddle,
-          addTaskToProject,
-          clearTasks
-        };
+  return { setMiddle, displayProjectMiddle, addTaskToProject, clearTasks };
 })();
 
 export default setMiddleView;

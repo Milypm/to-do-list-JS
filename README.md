@@ -40,7 +40,7 @@ Any advice and suggestion for improvement are more than welcome.
 Visit [issues' section](https://github.com/Milypm/to-do-list-JS/issues)
 
 ## Show your support
-Give a :star2: if you like this project!
+Give a :star2: if you like this project!!
 
 ## License
 This project is [MIT](!)

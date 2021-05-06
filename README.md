@@ -43,4 +43,4 @@ Visit [issues' section](https://github.com/Milypm/to-do-list-JS/issues)
 Give a :star2: if you like this project!
 
 ## License
-This project is [MIT]()
+This project is [MIT](!)

@@ -23,7 +23,7 @@ const setMiddleView = (() => {
   const myTasksBtn = document.createElement('button');
   myTasksBtn.setAttribute('id', 'add-task-btn');
   myTasksBtn.addEventListener('click', function() {
-    document.querySelector('#mytasks-form').style.display = 'block';
+    document.querySelector('#mytasks-form').style.display = 'flex';
   });
 
   const descripFormInput = document.createElement('input');
@@ -64,7 +64,7 @@ const setMiddleView = (() => {
   const inputDatePriority = document.createElement('div');
   inputDatePriority.classList.add('input-date-priority');
 
-  const newTaskSaveBtn = document.createElement('p');
+  const newTaskSaveBtn = document.createElement('button');
   newTaskSaveBtn.classList.add('new-project-btn');
   newTaskSaveBtn.classList.add('new-task-btn');
   newTaskSaveBtn.classList.add('save-task-btn');
@@ -81,8 +81,13 @@ const setMiddleView = (() => {
   const myTasksForm = document.createElement('form');
   myTasksForm.classList.add('mytasks-form');
   myTasksForm.setAttribute('id', 'mytasks-form');
+
+  let projectToEdit;
+  let indexTaskToEdit;
+  let taskName = '';
+
   myTasksForm.addEventListener('click', (e) => {
-    if (e.target.classList.contains('save-task-btn')) {
+    if (taskName === '' && e.target.classList.contains('save-task-btn')) {
       e.preventDefault();
       const description = document.querySelector('#description-input').value;
       const date = document.querySelector('#date-input').value;
@@ -98,8 +103,21 @@ const setMiddleView = (() => {
         clearForm();
         document.querySelector('#mytasks-form').style.display = 'none';
       }
+    } else if (taskName !== '' && e.target.classList.contains('save-task-btn')) {
+      const editDescription = document.querySelector('#description-input').value;
+      const editDate = document.querySelector('#date-input').value;
+      const editPriority = document.querySelector('#priority-input').value;
+      if (editDescription === '' || editDate === '') {
+        alert('Please fill in description and date fields');
+      } else {
+        buildTask.editTask(projectToEdit, indexTaskToEdit, editDescription, editDate, editPriority);
+        clearForm();
+        document.querySelector('#mytasks-form').style.display = 'none';
+        taskName = '';
+      }
     } else if (e.target.classList.contains('cancel-task-btn')) {
       document.querySelector('#mytasks-form').style.display = 'none';
+      clearForm();
     }
   });
 
@@ -185,24 +203,59 @@ const setMiddleView = (() => {
     taskDescription.classList.add('task-description');
     taskDescription.textContent = `${myTask}`;
 
-    taskDescriptionContainer = document.createElement('div');
-
     taskPriority = document.createElement('i');
     taskPriority.classList.add('fas');
     taskPriority.classList.add('fa-exclamation-triangle');
     taskPriority.style.color = color;
 
+    taskDescriptionContainer = document.createElement('div');
+    taskDescriptionContainer.classList.add('task-descrition-container');
+
+    const editIcon = document.createElement('i');
+    editIcon.classList.add('edit-icon-right');
+    editIcon.classList.add('fas');
+    editIcon.classList.add('fa-pen');
+
+    const deleteIcon = document.createElement('i');
+    deleteIcon.classList.add('delete-icon-right');
+    deleteIcon.classList.add('fas');
+    deleteIcon.classList.add('fa-trash');
+
+    const editDeleteBtns = document.createElement('div');
+    editDeleteBtns.classList.add('edit-delete-btns');
+
     taskDescriptionContainer.appendChild(taskIcon);
     taskDescriptionContainer.appendChild(taskDescription);
+    taskDescriptionContainer.appendChild(taskPriority);
+    editDeleteBtns.appendChild(editIcon);
+    editDeleteBtns.appendChild(deleteIcon);
     taskItem.appendChild(taskDescriptionContainer);
-    taskItem.appendChild(taskPriority);
+    taskItem.appendChild(editDeleteBtns);
     myTasksList.appendChild(taskItem);
 
-    taskItem.addEventListener('click', (e) => {
-      const clickedTask = e.target.textContent;
-      setRightView.clearDetails();
-      setRightView.displayTaskDetails(clickedTask);
+    myTasksList.addEventListener('click', (e) => {
+      if (e.target.classList.contains('task-btn')) {
+        const clickedTask = e.target.textContent;
+        setRightView.clearDetails();
+        setRightView.displayTaskDetails(clickedTask);
+      }
     });
+
+    taskItem.addEventListener('click', (e) => {
+      if (e.target.classList.contains('fa-pen')) {
+        taskName = taskItem.textContent;
+        projectToEdit = buildTask.findProject(taskName);
+        indexTaskToEdit = buildTask.findIndex(taskName);
+        document.querySelector('#mytasks-form').style.display = 'flex';
+      } else if (e.target.classList.contains('fa-trash')){
+        const taskToDelete = e.target.parentElement.parentElement.textContent;
+        const projectTaskToDelete = buildTask.findProject(taskToDelete);
+        const indexTaskToDelete = buildTask.findIndex(taskToDelete);
+        buildTask.deleteTask(projectTaskToDelete, indexTaskToDelete);
+        e.target.parentElement.parentElement.remove();
+      }
+    });
+    return { taskName, projectToEdit };
   };
 
   const getPriorityFromTask = (taskObject) => {

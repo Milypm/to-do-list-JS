@@ -155,7 +155,7 @@ const setLeftView = (() => {
       if (e.target.classList.contains('fa-pen')) {
         document.querySelector('.input-formProject').value = listItem.textContent;
         projectName = listItem.textContent;
-        projectToEdit = buildProject.findProject(listItem.textContent);
+        projectToEdit = buildProject.findProject(projectName);
         document.querySelector('#id-project-form').style.display = 'flex';
       } else if (e.target.classList.contains('fa-trash')){
         const projectToDelete = listItem.textContent;

@@ -9,8 +9,6 @@ const buildTask = (() => {
     'priority': '',
   }
 
-  let formattedDate;
-
   const addTask = (project, description, date, priority) => {
     let currentProject;
     const newDate = format(new Date(date), 'd MMMM yyyy');
@@ -55,58 +53,25 @@ const buildTask = (() => {
     return index;
   };
 
-  const editTaskDescription = (projectObj, newDescrip, index) => {
+  const editTask = (projectObj, index, description, date, priority) => {
     const task = projectObj.content[index];
-    task.description = newDescrip;
+    task.description = description;
+    console.log(task.description = description);
+    task.dueDate = format(new Date(date), 'd MMMM yyyy');
+    task.priority = priority;
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
-  const editTaskDate = (projectObj, date, index) => {
-    const newDate = format(new Date(date), 'd MMMM yyyy');
-    const task = projectObj.content[index];
-    task.dueDate = newDate;
-    localStorage.setItem('projects', JSON.stringify(projects));
-    formattedDate = newDate;
-  };
-
-  const getFormattedDate = () => {
-    return formattedDate;
-  };
-
-  const editTaskPriority = (projectObj, newPriority, index) => {
-    const task = projectObj.content[index];
-    task.priority = newPriority;
-    localStorage.setItem('projects', JSON.stringify(projects));
-  };
-
-  const deleteTaskDescription = (projectObj, index) => {
-    const task = projectObj.content[index];
-    delete task.description;
-    localStorage.setItem('projects', JSON.stringify(projects));
-  };
-
-  const deleteTaskDate = (projectObj, index) => {
-    const task = projectObj.content[index];
-    delete task.dueDate;
-    localStorage.setItem('projects', JSON.stringify(projects));
-  };
-
-  const deleteTaskPriority = (projectObj, index) => {
-    const task = projectObj.content[index];
-    delete task.priority;
+  const deleteTask = (projectObj, taskIndex) => {
+    projectObj.content.splice(taskIndex, 1);
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
   return { addTask,
           findProject,
           findIndex,
-          editTaskDescription,
-          editTaskDate,
-          getFormattedDate,
-          editTaskPriority,
-          deleteTaskDescription,
-          deleteTaskDate,
-          deleteTaskPriority
+          editTask,
+          deleteTask
         };
 })();
 

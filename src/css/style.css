@@ -253,10 +253,16 @@ body {
   text-align: start;
   padding: 8px 0 8px 10px;
   font-size: 19px;
+  z-index: 1;
 }
 
 .task-btn:hover {
   background: #96ccaa;
+}
+
+.task-descrition-container {
+  width: 320px;
+  z-index: -1;
 }
 
 .task-description {
@@ -264,8 +270,8 @@ body {
 }
 
 .fa-exclamation-triangle {
-  margin-right: 15px;
-  font-size: 23px;
+  margin-left: 15px;
+  font-size: 19px;
 }
 
 .taskdetails-container {
@@ -312,7 +318,6 @@ body {
   margin-left: 20px;
   padding-left: 5px;
   height: 34px;
-  border: 1px solid red;
 }
 
 .details-form div {
@@ -325,8 +330,9 @@ body {
 .edit-delete-btns {
   display: flex;
   justify-content: space-between;
-  width: 36px;
+  width: 40px;
   padding-top: 5px;
+  margin-right: 15px;
 }
 
 .details-form button,

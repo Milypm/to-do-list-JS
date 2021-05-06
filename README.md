@@ -8,7 +8,7 @@
 > This project consists of a single page fully built with JavaScript, with three different modules/views displaying a My Lists/General List section, a My Tasks section and a Task details section. Webpack was used for bundling the different modules.
 
 ## Live Project
-You can visit the live project here: [Github page]()
+You can visit the live project here: [Github page](https://milypm.github.io/to-do-list-JS/)
 
 ## Built With
 - JavaScript
@@ -43,4 +43,4 @@ Visit [issues' section](https://github.com/Milypm/to-do-list-JS/issues)
 Give a :star2: if you like this project!!
 
 ## License
-This project is [MIT](!)
+This project is [MIT](https://github.com/Milypm/to-do-list-JS/blob/build/LICENSE)

@@ -1,4 +1,3 @@
-import { de } from 'date-fns/locale';
 import setLeftView from './dom/leftView';
 import setMiddleView from './dom/middleView';
 import setRightView from './dom/rightView';

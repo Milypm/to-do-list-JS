@@ -1,4 +1,4 @@
-import buildProject from "../logics/projectsList-Store";
+import buildProject from '../logics/projectsList-Store';
 import setMiddleView from './middleView';
 
 const setLeftView = (() => {
@@ -20,7 +20,7 @@ const setLeftView = (() => {
   const myListsBtn = document.createElement('button');
   myListsBtn.classList.add('plus-btn');
   myListsBtn.setAttribute('id', 'add-project-btn');
-  myListsBtn.addEventListener('click', function() {
+  myListsBtn.addEventListener('click', () => {
     document.querySelector('#id-project-form').style.display = 'flex';
   });
 
@@ -54,6 +54,63 @@ const setLeftView = (() => {
 
   let projectToEdit;
   let projectName = '';
+
+  const addProjectToProjects = (project) => {
+    let myProjectName;
+    if (typeof project === 'string') {
+      myProjectName = project;
+    } else {
+      myProjectName = project.name;
+    }
+
+    const listItem = document.createElement('button');
+    listItem.classList.add('projectList-btn');
+
+    const listIcon = document.createElement('i');
+    listIcon.classList.add('far');
+    listIcon.classList.add('fa-list-alt');
+
+    const name = document.createElement('span');
+    name.textContent = `${myProjectName}`;
+
+    const editIcon = document.createElement('i');
+    editIcon.classList.add('edit-icon-left');
+    editIcon.classList.add('fas');
+    editIcon.classList.add('fa-pen');
+
+    const deleteIcon = document.createElement('i');
+    deleteIcon.classList.add('delete-icon-left');
+    deleteIcon.classList.add('fas');
+    deleteIcon.classList.add('fa-trash');
+
+    listItem.appendChild(listIcon);
+    listItem.appendChild(name);
+    listItem.appendChild(editIcon);
+    listItem.appendChild(deleteIcon);
+    myListsContainer.appendChild(listItem);
+
+    myListsAndGeneralContainer.addEventListener('click', (e) => {
+      if (e.target.classList.contains('projectList-btn')) {
+        const project = e.target.textContent;
+        setMiddleView.clearTasks();
+        setMiddleView.displayProjectMiddle(buildProject.findProject(project));
+      }
+    });
+
+    listItem.addEventListener('click', (e) => {
+      if (e.target.classList.contains('fa-pen')) {
+        document.querySelector('.input-formProject').value = listItem.textContent;
+        projectName = listItem.textContent;
+        projectToEdit = buildProject.findProject(listItem.textContent);
+        document.querySelector('#id-project-form').style.display = 'flex';
+      } else if (e.target.classList.contains('fa-trash')) {
+        const projectToDelete = listItem.textContent;
+        buildProject.deleteProject(projectToDelete);
+        e.target.parentElement.remove();
+      }
+    });
+    return { projectName, projectToEdit };
+  };
 
   newProjectForm.addEventListener('click', (e) => {
     if (projectName === '' && e.target.classList.contains('form-save-btn')) {
@@ -107,63 +164,6 @@ const setLeftView = (() => {
     const projects = buildProject.getProjects();
     projects.shift();
     projects.forEach((projectObj) => addProjectToProjects(projectObj));
-  };
-
-  const addProjectToProjects = (project) => {
-    let myProjectName;
-    if (typeof project === 'string') {
-      myProjectName = project;
-    } else {
-      myProjectName = project.name;
-    }
-
-    const listItem = document.createElement('button');
-    listItem.classList.add('projectList-btn');
-
-    const listIcon = document.createElement('i');
-    listIcon.classList.add('far');
-    listIcon.classList.add('fa-list-alt');
-
-    const name = document.createElement('span');
-    name.textContent = `${myProjectName}`;
-
-    const editIcon = document.createElement('i');
-    editIcon.classList.add('edit-icon-left');
-    editIcon.classList.add('fas');
-    editIcon.classList.add('fa-pen');
-
-    const deleteIcon = document.createElement('i');
-    deleteIcon.classList.add('delete-icon-left');
-    deleteIcon.classList.add('fas');
-    deleteIcon.classList.add('fa-trash');
-
-    listItem.appendChild(listIcon);
-    listItem.appendChild(name);
-    listItem.appendChild(editIcon);
-    listItem.appendChild(deleteIcon);
-    myListsContainer.appendChild(listItem);
-    
-    myListsAndGeneralContainer.addEventListener('click', (e) => {
-      if (e.target.classList.contains('projectList-btn')) {
-        const project = e.target.textContent;
-        setMiddleView.clearTasks();
-        setMiddleView.displayProjectMiddle(buildProject.findProject(project));
-      }
-    });
-
-    listItem.addEventListener('click', (e) => {
-      if (e.target.classList.contains('fa-pen')) {
-        document.querySelector('.input-formProject').value = listItem.textContent;
-        projectName = listItem.textContent;
-        projectToEdit = buildProject.findProject(listItem.textContent);
-        document.querySelector('#id-project-form').style.display = 'flex';
-      } else if (e.target.classList.contains('fa-trash')){
-        const projectToDelete = listItem.textContent;
-        buildProject.deleteProject(projectToDelete);
-        e.target.parentElement.remove();
-      }
-    });
-    return { projectName, projectToEdit };
   };
 
   document.addEventListener('DOMContentLoaded', displayProjects());

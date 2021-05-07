@@ -45,7 +45,7 @@ const setRightView = (() => {
     editIcon1.classList.add('edit-icon-right');
     editIcon1.classList.add('fas');
     editIcon1.classList.add('fa-pen');
-    editIcon1.addEventListener('click', function() {
+    editIcon1.addEventListener('click', () => {
       descriptionForm.style.display = 'flex';
     });
 
@@ -53,8 +53,8 @@ const setRightView = (() => {
     deleteIcon1.classList.add('delete-icon-right');
     deleteIcon1.classList.add('fas');
     deleteIcon1.classList.add('fa-trash');
-    deleteIcon1.addEventListener('click', function() {
-      //const detailDelete = selectedTask.description;
+    deleteIcon1.addEventListener('click', () => {
+      // const detailDelete = selectedTask.description;
       buildTask.deleteTaskDescription(project, index);
       descriptionDetail.textContent = 'Description:';
     });
@@ -110,7 +110,7 @@ const setRightView = (() => {
     editIcon2.classList.add('edit-icon-right');
     editIcon2.classList.add('fas');
     editIcon2.classList.add('fa-pen');
-    editIcon2.addEventListener('click', function() {
+    editIcon2.addEventListener('click', () => {
       dateForm.style.display = 'flex';
     });
 
@@ -118,8 +118,8 @@ const setRightView = (() => {
     deleteIcon2.classList.add('delete-icon-right');
     deleteIcon2.classList.add('fas');
     deleteIcon2.classList.add('fa-trash');
-    deleteIcon2.addEventListener('click', function() {
-      //const detailDelete = selectedTask.dueDate;
+    deleteIcon2.addEventListener('click', () => {
+      // const detailDelete = selectedTask.dueDate;
       buildTask.deleteTaskDate(project, index);
       dueDateDetail.textContent = 'Due Date:';
     });
@@ -156,7 +156,7 @@ const setRightView = (() => {
         } else {
           buildTask.editTaskDate(project, newDate, index);
           dueDateDetail.textContent = `Due Date: ${buildTask.getFormattedDate()}`;
-          //document.querySelector('.new-date-input').value = '';
+          // document.querySelector('.new-date-input').value = '';
           dateForm.style.display = 'none';
         }
       } else if (e.target.classList.contains('date-cancel-btn')) {
@@ -172,12 +172,12 @@ const setRightView = (() => {
     const priorityDetail = document.createElement('p');
     priorityDetail.classList.add('description-detail');
     priorityDetail.textContent = `Priority: ${selectedTask.priority}`;
-
+    const priorityFormInput = document.createElement('select');
     const editIcon3 = document.createElement('i');
     editIcon3.classList.add('edit-icon-right');
     editIcon3.classList.add('fas');
     editIcon3.classList.add('fa-pen');
-    editIcon3.addEventListener('click', function() {
+    editIcon3.addEventListener('click', () => {
       priorityForm.style.display = 'flex';
     });
 
@@ -185,8 +185,8 @@ const setRightView = (() => {
     deleteIcon3.classList.add('delete-icon-right');
     deleteIcon3.classList.add('fas');
     deleteIcon3.classList.add('fa-trash');
-    deleteIcon3.addEventListener('click', function() {
-      //const detailDelete = selectedTask.priority;
+    deleteIcon3.addEventListener('click', () => {
+      // const detailDelete = selectedTask.priority;
       buildTask.deleteTaskPriority(project, index);
       priorityDetail.textContent = 'Priority:';
     });
@@ -200,24 +200,23 @@ const setRightView = (() => {
     const priorityNone = document.createElement('option');
     priorityNone.classList.add('priority-option');
     priorityNone.textContent = 'None';
-  
+
     const priorityUrgent = document.createElement('option');
     priorityUrgent.classList.add('priority-option');
     priorityUrgent.textContent = 'Urgent';
-  
+
     const priorityHigh = document.createElement('option');
     priorityHigh.classList.add('priority-option');
     priorityHigh.textContent = 'High';
-  
+
     const priorityRegular = document.createElement('option');
     priorityRegular.classList.add('priority-option');
     priorityRegular.textContent = 'Regular';
-  
+
     const priorityLow = document.createElement('option');
     priorityLow.classList.add('priority-option');
     priorityLow.textContent = 'Low';
-  
-    const priorityFormInput = document.createElement('select');
+
     priorityFormInput.classList.add('new-priority-input');
     priorityFormInput.classList.add('details-input');
     priorityFormInput.classList.add('task-form-input');

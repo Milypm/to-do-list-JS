@@ -3,11 +3,11 @@ import buildProject from './projectsList-Store';
 const { format } = require('date-fns');
 
 const buildTask = (() => {
-  let task = {
-    'description': '',
-    'dueDate': '',
-    'priority': '',
-  }
+  const task = {
+    description: '',
+    dueDate: '',
+    priority: '',
+  };
 
   let formattedDate;
 
@@ -49,7 +49,7 @@ const buildTask = (() => {
         if (taskDescrip === taskObj.description) {
           index = i;
         }
-        i++;
+        i += 1;
       });
     });
     return index;
@@ -69,9 +69,7 @@ const buildTask = (() => {
     formattedDate = newDate;
   };
 
-  const getFormattedDate = () => {
-    return formattedDate;
-  };
+  const getFormattedDate = () => formattedDate;
 
   const editTaskPriority = (projectObj, newPriority, index) => {
     const task = projectObj.content[index];
@@ -97,17 +95,18 @@ const buildTask = (() => {
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
-  return { addTask,
-          findProject,
-          findIndex,
-          editTaskDescription,
-          editTaskDate,
-          getFormattedDate,
-          editTaskPriority,
-          deleteTaskDescription,
-          deleteTaskDate,
-          deleteTaskPriority
-        };
+  return {
+    addTask,
+    findProject,
+    findIndex,
+    editTaskDescription,
+    editTaskDate,
+    getFormattedDate,
+    editTaskPriority,
+    deleteTaskDescription,
+    deleteTaskDate,
+    deleteTaskPriority,
+  };
 })();
 
 export default buildTask;

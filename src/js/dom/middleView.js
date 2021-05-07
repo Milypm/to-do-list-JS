@@ -12,6 +12,8 @@ const setMiddleView = (() => {
   const middleViewTitle = document.createElement('h3');
   middleViewTitle.textContent = 'General List';
 
+  const myTasksForm = document.createElement('form');
+
   const plusBtn = document.createElement('i');
   plusBtn.classList.add('fas');
   plusBtn.classList.add('fa-plus');
@@ -22,7 +24,7 @@ const setMiddleView = (() => {
 
   const myTasksBtn = document.createElement('button');
   myTasksBtn.setAttribute('id', 'add-task-btn');
-  myTasksBtn.addEventListener('click', function() {
+  myTasksBtn.addEventListener('click', () => {
     document.querySelector('#mytasks-form').style.display = 'block';
   });
 
@@ -78,31 +80,6 @@ const setMiddleView = (() => {
   newTaskCancelBtn.setAttribute('id', 'task-cancel-btn');
   newTaskCancelBtn.textContent = 'Cancel';
 
-  const myTasksForm = document.createElement('form');
-  myTasksForm.classList.add('mytasks-form');
-  myTasksForm.setAttribute('id', 'mytasks-form');
-  myTasksForm.addEventListener('click', (e) => {
-    if (e.target.classList.contains('save-task-btn')) {
-      e.preventDefault();
-      const description = document.querySelector('#description-input').value;
-      const date = document.querySelector('#date-input').value;
-      const priority = document.querySelector('#priority-input').value;
-      const newTask = description;
-      const newPriority = priority;
-      const currentProject = middleViewTitle.textContent;
-      if (description === '' || date === 'mm / dd / yyyy') {
-        alert('Please fill in description and date fields');
-      } else {
-        buildTask.addTask(currentProject, description, date, priority);
-        addTaskToProject(newTask, newPriority);
-        clearForm();
-        document.querySelector('#mytasks-form').style.display = 'none';
-      }
-    } else if (e.target.classList.contains('cancel-task-btn')) {
-      document.querySelector('#mytasks-form').style.display = 'none';
-    }
-  });
-
   const myTasksList = document.createElement('div');
   myTasksList.classList.add('mytasks-list');
   let taskItem;
@@ -110,7 +87,7 @@ const setMiddleView = (() => {
   let taskDescription;
   let taskDescriptionContainer;
   let taskPriority;
-  
+
   const setMiddle = () => {
     myTasksBtn.appendChild(plusBtn);
     myTasksBtn.appendChild(addTaskTextBtn);
@@ -173,7 +150,7 @@ const setMiddleView = (() => {
     } else if (myPriority === 'Low') {
       color = '#76b62c';
     }
-  
+
     taskItem = document.createElement('button');
     taskItem.classList.add('task-btn');
 
@@ -205,6 +182,30 @@ const setMiddleView = (() => {
     });
   };
 
+  myTasksForm.classList.add('mytasks-form');
+  myTasksForm.setAttribute('id', 'mytasks-form');
+  myTasksForm.addEventListener('click', (e) => {
+    if (e.target.classList.contains('save-task-btn')) {
+      e.preventDefault();
+      const description = document.querySelector('#description-input').value;
+      const date = document.querySelector('#date-input').value;
+      const priority = document.querySelector('#priority-input').value;
+      const newTask = description;
+      const newPriority = priority;
+      const currentProject = middleViewTitle.textContent;
+      if (description === '' || date === 'mm / dd / yyyy') {
+        alert('Please fill in description and date fields');
+      } else {
+        buildTask.addTask(currentProject, description, date, priority);
+        addTaskToProject(newTask, newPriority);
+        clearForm();
+        document.querySelector('#mytasks-form').style.display = 'none';
+      }
+    } else if (e.target.classList.contains('cancel-task-btn')) {
+      document.querySelector('#mytasks-form').style.display = 'none';
+    }
+  });
+
   const getPriorityFromTask = (taskObject) => {
     let priority;
     const projects = buildProject.getProjects();
@@ -213,7 +214,7 @@ const setMiddleView = (() => {
         if (taskObj.description === taskObject.description) {
           priority = taskObj.priority;
         }
-      })
+      });
     });
     return priority;
   };
@@ -233,11 +234,12 @@ const setMiddleView = (() => {
 
   document.addEventListener('DOMContentLoaded', displayProjectMiddle(setDefault()));
 
-  return { setMiddle,
-          displayProjectMiddle,
-          addTaskToProject,
-          clearTasks
-        };
+  return {
+    setMiddle,
+    displayProjectMiddle,
+    addTaskToProject,
+    clearTasks,
+  };
 })();
 
 export default setMiddleView;

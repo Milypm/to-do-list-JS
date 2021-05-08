@@ -149,10 +149,6 @@ body {
   z-index: 2;
 }
 
-.projectList-btn span {
-  z-index: -1;
-}
-
 .projectList-btn:hover {
   background: #96ccaa;
 }
@@ -160,6 +156,7 @@ body {
 .projectList-btn span {
   display: flex;
   width: 150px;
+  z-index: -1;
 }
 
 .mylists-container {
@@ -214,9 +211,8 @@ body {
 
 .mytasks-form {
   margin-top: 15px;
-  display: flex;
-  flex-direction: column;
   display: none;
+  flex-direction: column;
 }
 
 .input-date-priority {

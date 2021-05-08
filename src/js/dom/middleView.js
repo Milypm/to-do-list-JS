@@ -28,6 +28,12 @@ const setMiddleView = (() => {
     document.querySelector('#mytasks-form').style.display = 'block';
   });
 
+  const titleFormInput = document.createElement('input');
+  titleFormInput.classList.add('task-form-input');
+  titleFormInput.setAttribute('id', 'title-input');
+  titleFormInput.type = 'text';
+  titleFormInput.placeholder = 'Task title';
+
   const descripFormInput = document.createElement('input');
   descripFormInput.classList.add('task-form-input');
   descripFormInput.setAttribute('id', 'description-input');
@@ -93,6 +99,7 @@ const setMiddleView = (() => {
     myTasksBtn.appendChild(addTaskTextBtn);
     myTasksTitleBtn.appendChild(middleViewTitle);
     myTasksTitleBtn.appendChild(myTasksBtn);
+    myTasksForm.appendChild(titleFormInput);
     myTasksForm.appendChild(descripFormInput);
     priorityFormInput.appendChild(priorityNone);
     priorityFormInput.appendChild(priorityUrgent);
@@ -187,6 +194,7 @@ const setMiddleView = (() => {
   myTasksForm.addEventListener('click', (e) => {
     if (e.target.classList.contains('save-task-btn')) {
       e.preventDefault();
+      const title = document.querySelector('#title-input').value;
       const description = document.querySelector('#description-input').value;
       const date = document.querySelector('#date-input').value;
       const priority = document.querySelector('#priority-input').value;
@@ -227,6 +235,7 @@ const setMiddleView = (() => {
   };
 
   const clearForm = () => {
+    document.getElementById('title-input').value = '';
     document.getElementById('description-input').value = '';
     document.getElementById('date-input').value = '';
     document.getElementById('priority-input').value = 'None';

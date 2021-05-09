@@ -272,6 +272,7 @@ body {
   margin-top: 45px;
 }
 
+.title-detail,
 .description-detail {
   padding-left: 25px;
   position: relative;
@@ -285,6 +286,7 @@ body {
   top: 5px;
 }
 
+#title-form,
 #description-form,
 #date-form,
 #priority-form {

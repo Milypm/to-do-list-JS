@@ -37,9 +37,22 @@ const setRightView = (() => {
     const index = buildTask.findIndex(selectedTask.description);
 
     // ###################################################### //
+    const titleDetail = document.createElement('p');
+    titleDetail.classList.add('title-detail');
+    titleDetail.textContent = `Title: ${selectedTask.title}`;
+
     const descriptionDetail = document.createElement('p');
     descriptionDetail.classList.add('description-detail');
     descriptionDetail.textContent = `Description: ${selectedTask.description}`;
+
+    const editIcon0 = document.createElement('i');
+    editIcon0.classList.add('edit-icon-right');
+    editIcon0.classList.add('edit-icon-right');
+    editIcon0.classList.add('fas');
+    editIcon0.classList.add('fa-pen');
+    editIcon0.addEventListener('click', () => {
+      titleForm.style.display = 'flex';
+    });
 
     const editIcon1 = document.createElement('i');
     editIcon1.classList.add('edit-icon-right');
@@ -47,6 +60,16 @@ const setRightView = (() => {
     editIcon1.classList.add('fa-pen');
     editIcon1.addEventListener('click', () => {
       descriptionForm.style.display = 'flex';
+    });
+
+    const deleteIcon0 = document.createElement('i');
+    deleteIcon0.classList.add('delete-icon-right');
+    deleteIcon0.classList.add('fas');
+    deleteIcon0.classList.add('fa-trash');
+    deleteIcon0.addEventListener('click', () => {
+      // const detailDelete = selectedTask.description;
+      buildTask.deleteTaskTitle(project, index);
+      titleDetail.textContent = 'Title:';
     });
 
     const deleteIcon1 = document.createElement('i');
@@ -59,15 +82,32 @@ const setRightView = (() => {
       descriptionDetail.textContent = 'Description:';
     });
 
+    const editDeleteBtns0 = document.createElement('div');
+    editDeleteBtns0.classList.add('edit-delete-btns');
+
     const editDeleteBtns1 = document.createElement('div');
     editDeleteBtns1.classList.add('edit-delete-btns');
+
+    const titleContainer = document.createElement('div');
+    titleContainer.classList.add('each-detail-container');
 
     const descriptionContainer = document.createElement('div');
     descriptionContainer.classList.add('each-detail-container');
 
+    const editTitleInput = document.createElement('input');
+    editTitleInput.classList.add('new-title-input');
+    editTitleInput.classList.add('details-input');
+
     const editDescriptionInput = document.createElement('input');
     editDescriptionInput.classList.add('new-description-input');
     editDescriptionInput.classList.add('details-input');
+
+    const titleSaveBtn = document.createElement('p');
+    titleSaveBtn.classList.add('title-save-btn');
+    titleSaveBtn.textContent = 'Save';
+    const titleCancelBtn = document.createElement('p');
+    titleCancelBtn.classList.add('title-cancel-btn');
+    titleCancelBtn.textContent = 'Cancel';
 
     const descriptionSaveBtn = document.createElement('p');
     descriptionSaveBtn.classList.add('description-save-btn');
@@ -76,7 +116,28 @@ const setRightView = (() => {
     descriptionCancelBtn.classList.add('description-cancel-btn');
     descriptionCancelBtn.textContent = 'Cancel';
 
+    const titleFormBtns = document.createElement('div');
     const descriptionFormBtns = document.createElement('div');
+
+    const titleForm = document.createElement('form');
+    titleForm.setAttribute('id', 'title-form');
+    titleForm.classList.add('details-form');
+    titleForm.addEventListener('click', (e) => {
+      if (e.target.classList.contains('title-save-btn')) {
+        const newTitle = document.querySelector('.new-title-input').value;
+        if (newTitle === '') {
+          alert('Please fill in the title field.');
+        } else {
+          buildTask.editTaskTitle(project, newTitle, index);
+          titleDetail.textContent = `Title: ${newTitle}`;
+          document.querySelector('.new-title-input').value = '';
+          titleForm.style.display = 'none';
+        }
+      } else if (e.target.classList.contains('title-cancel-btn')) {
+        titleForm.style.display = 'none';
+        document.querySelector('.new-title-input').value = '';
+      }
+    });
 
     const descriptionForm = document.createElement('form');
     descriptionForm.setAttribute('id', 'description-form');
@@ -97,6 +158,9 @@ const setRightView = (() => {
         document.querySelector('.new-description-input').value = '';
       }
     });
+
+    const titleFormContainer = document.createElement('div');
+    titleFormContainer.classList.add('details-form-container');
 
     const descriptionFormContainer = document.createElement('div');
     descriptionFormContainer.classList.add('details-form-container');
@@ -249,6 +313,17 @@ const setRightView = (() => {
     const priorityFormContainer = document.createElement('div');
     priorityFormContainer.classList.add('details-form-container');
 
+    titleContainer.appendChild(titleDetail);
+    editDeleteBtns0.appendChild(editIcon0);
+    editDeleteBtns0.appendChild(deleteIcon0);
+    titleContainer.appendChild(editDeleteBtns0);
+    titleForm.appendChild(editTitleInput);
+    titleFormBtns.appendChild(titleSaveBtn);
+    titleFormBtns.appendChild(titleCancelBtn);
+    titleForm.appendChild(titleFormBtns);
+    titleFormContainer.appendChild(titleContainer);
+    titleFormContainer.appendChild(titleForm);
+
     descriptionContainer.appendChild(descriptionDetail);
     editDeleteBtns1.appendChild(editIcon1);
     editDeleteBtns1.appendChild(deleteIcon1);
@@ -287,6 +362,7 @@ const setRightView = (() => {
     priorityFormContainer.appendChild(priorityContainer);
     priorityFormContainer.appendChild(priorityForm);
 
+    detailsContainer.appendChild(titleFormContainer);
     detailsContainer.appendChild(descriptionFormContainer);
     detailsContainer.appendChild(dateFormContainer);
     detailsContainer.appendChild(priorityFormContainer);

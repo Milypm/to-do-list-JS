@@ -4,6 +4,7 @@ const { format } = require('date-fns');
 
 const buildTask = (() => {
   const task = {
+    title: '',
     description: '',
     dueDate: '',
     priority: '',
@@ -11,7 +12,7 @@ const buildTask = (() => {
 
   let formattedDate;
 
-  const addTask = (project, description, date, priority) => {
+  const addTask = (project, title, description, date, priority) => {
     let currentProject;
     const newDate = format(new Date(date), 'd MMMM yyyy');
     const projects = buildProject.getProjects();
@@ -20,6 +21,7 @@ const buildTask = (() => {
         currentProject = projectObj;
       }
     });
+    task.title = title;
     task.description = description;
     task.dueDate = newDate;
     task.priority = priority;
@@ -61,6 +63,12 @@ const buildTask = (() => {
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
+  const editTaskTitle = (projectObj, newTitle, index) => {
+    const task = projectObj.content[index];
+    task.title = newTitle;
+    localStorage.setItem('projects', JSON.stringify(projects));
+  };
+
   const editTaskDate = (projectObj, date, index) => {
     const newDate = format(new Date(date), 'd MMMM yyyy');
     const task = projectObj.content[index];
@@ -74,6 +82,12 @@ const buildTask = (() => {
   const editTaskPriority = (projectObj, newPriority, index) => {
     const task = projectObj.content[index];
     task.priority = newPriority;
+    localStorage.setItem('projects', JSON.stringify(projects));
+  };
+
+  const deleteTaskTitle = (projectObj, index) => {
+    const task = projectObj.content[index];
+    delete task.title;
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
@@ -99,10 +113,12 @@ const buildTask = (() => {
     addTask,
     findProject,
     findIndex,
+    editTaskTitle,
     editTaskDescription,
     editTaskDate,
     getFormattedDate,
     editTaskPriority,
+    deleteTaskTitle,
     deleteTaskDescription,
     deleteTaskDate,
     deleteTaskPriority,

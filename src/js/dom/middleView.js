@@ -90,9 +90,9 @@ const setMiddleView = (() => {
   myTasksList.classList.add('mytasks-list');
   let taskItem;
   let taskIcon;
-  let taskTitle;
+  // let taskTitle;
   let taskDescription;
-  let taskTitleContainer;
+  // let taskTitleContainer;
   let taskDescriptionContainer;
   let taskPriority;
 

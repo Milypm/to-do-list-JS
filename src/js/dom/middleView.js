@@ -90,7 +90,9 @@ const setMiddleView = (() => {
   myTasksList.classList.add('mytasks-list');
   let taskItem;
   let taskIcon;
+  let taskTitle;
   let taskDescription;
+  let taskTitleContainer;
   let taskDescriptionContainer;
   let taskPriority;
 
@@ -201,10 +203,10 @@ const setMiddleView = (() => {
       const newTask = description;
       const newPriority = priority;
       const currentProject = middleViewTitle.textContent;
-      if (description === '' || date === 'mm / dd / yyyy') {
+      if (title === '' || description === '' || date === 'mm / dd / yyyy') {
         alert('Please fill in description and date fields');
       } else {
-        buildTask.addTask(currentProject, description, date, priority);
+        buildTask.addTask(currentProject, title, description, date, priority);
         addTaskToProject(newTask, newPriority);
         clearForm();
         document.querySelector('#mytasks-form').style.display = 'none';

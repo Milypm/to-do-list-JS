@@ -246,7 +246,6 @@ const setMiddleView = (() => {
       if (e.target.classList.contains('task-btn')) {
         const clickedTask = e.target.textContent;
         setRightView.clearDetails();
-        console.log(clickedTask);
         setRightView.displayTaskDetails(clickedTask);
       }
     });

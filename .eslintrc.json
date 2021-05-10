@@ -26,10 +26,15 @@
     "no-template-curly-in-string": "off",
     "no-use-before-define": "off",
     "no-multi-assign": "off",
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+    "padded-blocks": "off",
+    "quotes": "off",
+    "spaced-comments": "off",
+    "indent": "off"
   },
   "ignorePatterns": [
     "dist/",
+    "docs/",
     "build/"
   ]
 }

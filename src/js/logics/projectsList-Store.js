@@ -1,13 +1,13 @@
 const buildProject = (() => {
   let projects;
-  let projectObject = {
-    'name': '',
-    'content': []
-  }
-  let defaultProject = {
-    'name': 'General List',
-    'content': []
-  }
+  const projectObject = {
+    name: '',
+    content: [],
+  };
+  const defaultProject = {
+    name: 'General List',
+    content: [],
+  };
 
   const getProjects = () => {
     const storedProjects = localStorage.getItem('projects');
@@ -52,7 +52,9 @@ const buildProject = (() => {
     return currentProject;
   };
 
-  return { projects, getProjects, addProject, editProject, deleteProject, findProject };
+  return {
+    projects, getProjects, addProject, editProject, deleteProject, findProject,
+  };
 })();
 
 export default buildProject;

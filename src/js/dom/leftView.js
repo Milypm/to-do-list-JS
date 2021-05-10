@@ -1,4 +1,4 @@
-import buildProject from "../logics/projectsList-Store";
+import buildProject from '../logics/projectsList-Store';
 import setMiddleView from './middleView';
 
 const setLeftView = (() => {
@@ -20,7 +20,7 @@ const setLeftView = (() => {
   const myListsBtn = document.createElement('button');
   myListsBtn.classList.add('plus-btn');
   myListsBtn.setAttribute('id', 'add-project-btn');
-  myListsBtn.addEventListener('click', function() {
+  myListsBtn.addEventListener('click', () => {
     document.querySelector('#id-project-form').style.display = 'flex';
   });
 
@@ -142,7 +142,7 @@ const setLeftView = (() => {
     listItem.appendChild(editIcon);
     listItem.appendChild(deleteIcon);
     myListsContainer.appendChild(listItem);
-    
+
     myListsAndGeneralContainer.addEventListener('click', (e) => {
       if (e.target.classList.contains('projectList-btn')) {
         const project = e.target.textContent;
@@ -157,7 +157,7 @@ const setLeftView = (() => {
         projectName = listItem.textContent;
         projectToEdit = buildProject.findProject(projectName);
         document.querySelector('#id-project-form').style.display = 'flex';
-      } else if (e.target.classList.contains('fa-trash')){
+      } else if (e.target.classList.contains('fa-trash')) {
         const projectToDelete = listItem.textContent;
         buildProject.deleteProject(projectToDelete);
         e.target.parentElement.remove();

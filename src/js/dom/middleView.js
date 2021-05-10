@@ -22,7 +22,7 @@ const setMiddleView = (() => {
 
   const myTasksBtn = document.createElement('button');
   myTasksBtn.setAttribute('id', 'add-task-btn');
-  myTasksBtn.addEventListener('click', function() {
+  myTasksBtn.addEventListener('click', () => {
     document.querySelector('#mytasks-form').style.display = 'flex';
   });
 
@@ -136,7 +136,7 @@ const setMiddleView = (() => {
   let taskDescription;
   let taskDescriptionContainer;
   let taskPriority;
-  
+
   const setMiddle = () => {
     myTasksBtn.appendChild(plusBtn);
     myTasksBtn.appendChild(addTaskTextBtn);
@@ -200,7 +200,7 @@ const setMiddleView = (() => {
     } else if (myPriority === 'Low') {
       color = '#76b62c';
     }
-  
+
     taskItem = document.createElement('button');
     taskItem.classList.add('task-btn');
 
@@ -257,7 +257,7 @@ const setMiddleView = (() => {
         projectToEdit = buildTask.findProject(taskName);
         indexTaskToEdit = buildTask.findIndex(taskName);
         document.querySelector('#mytasks-form').style.display = 'flex';
-      } else if (e.target.classList.contains('fa-trash')){
+      } else if (e.target.classList.contains('fa-trash')) {
         const taskToDelete = e.target.parentElement.parentElement.textContent;
         const projectTaskToDelete = buildTask.findProject(taskToDelete);
         const indexTaskToDelete = buildTask.findIndex(taskToDelete);
@@ -276,7 +276,7 @@ const setMiddleView = (() => {
         if (taskObj.description === taskObject.description) {
           priority = taskObj.priority;
         }
-      })
+      });
     });
     return priority;
   };
@@ -297,7 +297,9 @@ const setMiddleView = (() => {
 
   document.addEventListener('DOMContentLoaded', displayProjectMiddle(setDefault()));
 
-  return { setMiddle, displayProjectMiddle, addTaskToProject, clearTasks };
+  return {
+    setMiddle, displayProjectMiddle, addTaskToProject, clearTasks,
+  };
 })();
 
 export default setMiddleView;

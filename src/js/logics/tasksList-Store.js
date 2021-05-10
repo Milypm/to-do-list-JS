@@ -3,12 +3,12 @@ import buildProject from './projectsList-Store';
 const { format } = require('date-fns');
 
 const buildTask = (() => {
-  let task = {
-    'title': '',
-    'description': '',
-    'dueDate': '',
-    'priority': '',
-  }
+  const task = {
+    title: '',
+    description: '',
+    dueDate: '',
+    priority: '',
+  };
 
   const addTask = (project, title, description, date, priority) => {
     let currentProject;
@@ -49,7 +49,7 @@ const buildTask = (() => {
         if (taskTitle === taskObj.title) {
           index = i;
         }
-        i++;
+        i += 1;
       });
     });
     return index;
@@ -72,7 +72,9 @@ const buildTask = (() => {
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
-  return { addTask, findProject, findIndex, editTask, deleteTask };
+  return {
+    addTask, findProject, findIndex, editTask, deleteTask,
+  };
 })();
 
 export default buildTask;

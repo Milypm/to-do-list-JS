@@ -1,0 +1,39 @@
+{
+  "name": "to-do-list-JS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Milypm/to-do-list-JS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Milypm/to-do-list-JS/issues"
+  },
+  "homepage": "https://github.com/Milypm/to-do-list-JS#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "css-loader": "^5.2.4",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "style-loader": "^2.0.0",
+    "stylelint": "^9.3.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.19.0",
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.6.0"
+  },
+  "dependencies": {
+    "date-fns": "^2.21.1"
+  }
+}

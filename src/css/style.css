@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  background: #4e9a6a;
+  color: #fff;
+  font-size: 20px;
+  height: 100px;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 30% 37% 32.1%;
+  column-gap: 5px;
+  width: 100%;
+  height: calc(100vh - 100px);
+}
+
+.column-view {
+  display: flex;
+  flex-direction: column;
+  background: #d0ecda;
+  padding: 25px 0 25px 25px;
+  height: 100%;
+}
+
+.mylists-maincontainer {
+  width: 90%;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #fff;
+}
+
+.mylists-title-btn {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.column-view h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: auto 0;
+}
+
+.fa-plus {
+  font-size: 20px;
+  padding: 5px 7px;
+  margin: 0;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.plus-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.fa-plus:hover {
+  background: #96ccaa;
+}
+
+.column-view form {
+  width: 90%;
+}
+
+.new-project-btn {
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  background: #70b088;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.new-project-btn:hover {
+  opacity: 0.7;
+}
+
+.project-form {
+  display: none;
+  flex-direction: column;
+}
+
+.project-form div {
+  display: flex;
+  align-items: flex-start;
+}
+
+.fa-list-alt {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+  font-size: 20px;
+  z-index: -2;
+}
+
+.fa-pen,
+.fa-trash {
+  font-size: 13px;
+}
+
+.edit-icon-left {
+  position: absolute;
+  left: 275px;
+}
+
+.delete-icon-left {
+  position: absolute;
+  left: 300px;
+}
+
+.fa-pen:hover,
+.fa-trash:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.projectList-btn {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  text-align: start;
+  padding: 8px 0 8px 45px;
+  font-size: 18px;
+  z-index: 2;
+}
+
+.projectList-btn:hover {
+  background: #96ccaa;
+}
+
+.projectList-btn span {
+  display: flex;
+  width: 150px;
+  z-index: -1;
+}
+
+.mylists-container {
+  width: 100%;
+  height: max-content;
+  margin-top: 25px;
+}
+
+.default-list-btn {
+  margin-top: 20px;
+  width: 90%;
+}
+
+.myTasks-title-btn {
+  display: flex;
+  width: 90%;
+  height: 40px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.myTasks-title-btn h3 {
+  margin: auto 0;
+}
+
+#add-task-btn,
+.edit-details-btn {
+  border: none;
+  background: transparent;
+  border-bottom: 1.5px solid;
+  padding: 5px 0 5px 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.plus-btn-sm {
+  font-size: 15px;
+  margin: 0;
+}
+
+#add-task-btn:hover,
+.edit-details-btn:hover {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px 6px 5px;
+  background: #96ccaa;
+}
+
+#add-task-btn span {
+  margin-left: 3px;
+}
+
+.mytasks-form {
+  margin-top: 15px;
+  flex-direction: column;
+  display: none;
+}
+
+#title-input {
+  margin-bottom: 5px;
+}
+
+.input-date-priority {
+  margin: 5px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-form-input {
+  height: 35px;
+}
+
+.new-task-btn {
+  margin: 0 5px 0 5px;
+}
+
+.mytasks-list {
+  margin-top: 25px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-btn {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  text-align: start;
+  padding: 8px 0 8px 10px;
+  font-size: 19px;
+  z-index: 1;
+}
+
+.task-btn:hover {
+  background: #96ccaa;
+}
+
+.task-descrition-container {
+  width: 320px;
+  z-index: -1;
+}
+
+.task-description {
+  margin-left: 5px;
+}
+
+.fa-exclamation-triangle {
+  margin-left: 15px;
+  font-size: 19px;
+}
+
+.edit-delete-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 40px;
+  padding-top: 5px;
+  margin-right: 15px;
+}
+
+.taskdetails-container {
+  width: 90%;
+}
+
+.details-container {
+  margin-top: 45px;
+}
+
+.description-detail {
+  padding-left: 10px;
+  position: relative;
+  font-size: 19px;
+  width: 275px;
+}

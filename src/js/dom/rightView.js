@@ -26,11 +26,15 @@ const setRightView = (() => {
     const projects = buildProject.getProjects();
     projects.forEach((projectObj) => {
       projectObj.content.forEach((taskObj) => {
-        if (taskObj.description === task) {
+        if (taskObj.title === task) {
           selectedTask = taskObj;
         }
       });
     });
+
+    const titleDetail = document.createElement('p');
+    titleDetail.classList.add('description-detail');
+    titleDetail.textContent = `Title: ${selectedTask.title}`;
 
     const descriptionDetail = document.createElement('p');
     descriptionDetail.classList.add('description-detail');
@@ -44,6 +48,7 @@ const setRightView = (() => {
     priorityDetail.classList.add('description-detail');
     priorityDetail.textContent = `Priority: ${selectedTask.priority}`;
 
+    detailsContainer.appendChild(titleDetail);
     detailsContainer.appendChild(descriptionDetail);
     detailsContainer.appendChild(dueDateDetail);
     detailsContainer.appendChild(priorityDetail);

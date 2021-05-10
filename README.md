@@ -1,8 +1,8 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 # To-do List with JavaScript
 
-![img_1](https://user-images.githubusercontent.com/54684961/117340313-5c196f00-ae66-11eb-8d4c-c91819ba8641.png)
-![img_2](https://user-images.githubusercontent.com/54684961/117340387-6f2c3f00-ae66-11eb-950f-7362d6f6e8c9.png)
+![img_1](https://user-images.githubusercontent.com/54684961/117701189-8f247100-b18c-11eb-80c7-35f50e6b02b4.png)
+![img_2](https://user-images.githubusercontent.com/54684961/117701236-9c416000-b18c-11eb-8278-92aeeafc8fd1.png)
 
 
 > This project consists of a single page fully built with JavaScript, with three different modules/views displaying a My Lists/General List section, a My Tasks section and a Task details section. Webpack was used for bundling the different modules.

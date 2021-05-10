@@ -26,6 +26,12 @@ const setMiddleView = (() => {
     document.querySelector('#mytasks-form').style.display = 'flex';
   });
 
+  const titleFormInput = document.createElement('input');
+  titleFormInput.classList.add('task-form-input');
+  titleFormInput.setAttribute('id', 'title-input');
+  titleFormInput.type = 'text';
+  titleFormInput.placeholder = 'Task title';
+
   const descripFormInput = document.createElement('input');
   descripFormInput.classList.add('task-form-input');
   descripFormInput.setAttribute('id', 'description-input');
@@ -89,28 +95,30 @@ const setMiddleView = (() => {
   myTasksForm.addEventListener('click', (e) => {
     if (taskName === '' && e.target.classList.contains('save-task-btn')) {
       e.preventDefault();
+      const title = document.querySelector('#title-input').value;
       const description = document.querySelector('#description-input').value;
       const date = document.querySelector('#date-input').value;
       const priority = document.querySelector('#priority-input').value;
-      const newTask = description;
+      const newTask = title;
       const newPriority = priority;
       const currentProject = middleViewTitle.textContent;
-      if (description === '' || date === 'mm / dd / yyyy') {
+      if (title === '' || description === '' || date === 'mm / dd / yyyy') {
         alert('Please fill in description and date fields');
       } else {
-        buildTask.addTask(currentProject, description, date, priority);
+        buildTask.addTask(currentProject, title, description, date, priority);
         addTaskToProject(newTask, newPriority);
         clearForm();
         document.querySelector('#mytasks-form').style.display = 'none';
       }
     } else if (taskName !== '' && e.target.classList.contains('save-task-btn')) {
+      const editTitle = document.querySelector('#title-input').value;
       const editDescription = document.querySelector('#description-input').value;
       const editDate = document.querySelector('#date-input').value;
       const editPriority = document.querySelector('#priority-input').value;
-      if (editDescription === '' || editDate === '') {
+      if (editTitle === '' || editDescription === '' || editDate === '') {
         alert('Please fill in description and date fields');
       } else {
-        buildTask.editTask(projectToEdit, indexTaskToEdit, editDescription, editDate, editPriority);
+        buildTask.editTask(projectToEdit, indexTaskToEdit, editTitle, editDescription, editDate, editPriority);
         clearForm();
         document.querySelector('#mytasks-form').style.display = 'none';
         taskName = '';
@@ -134,6 +142,7 @@ const setMiddleView = (() => {
     myTasksBtn.appendChild(addTaskTextBtn);
     myTasksTitleBtn.appendChild(middleViewTitle);
     myTasksTitleBtn.appendChild(myTasksBtn);
+    myTasksForm.appendChild(titleFormInput);
     myTasksForm.appendChild(descripFormInput);
     priorityFormInput.appendChild(priorityNone);
     priorityFormInput.appendChild(priorityUrgent);
@@ -176,7 +185,7 @@ const setMiddleView = (() => {
       myTask = task;
       myPriority = priority;
     } else {
-      myTask = task.description;
+      myTask = task.title;
       myPriority = getPriorityFromTask(task);
     }
 
@@ -237,6 +246,7 @@ const setMiddleView = (() => {
       if (e.target.classList.contains('task-btn')) {
         const clickedTask = e.target.textContent;
         setRightView.clearDetails();
+        console.log(clickedTask);
         setRightView.displayTaskDetails(clickedTask);
       }
     });
@@ -279,6 +289,7 @@ const setMiddleView = (() => {
   };
 
   const clearForm = () => {
+    document.getElementById('title-input').value = '';
     document.getElementById('description-input').value = '';
     document.getElementById('date-input').value = '';
     document.getElementById('priority-input').value = 'None';

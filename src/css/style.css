@@ -215,6 +215,10 @@ body {
   display: none;
 }
 
+#title-input {
+  margin-bottom: 5px;
+}
+
 .input-date-priority {
   margin: 5px auto;
   display: flex;

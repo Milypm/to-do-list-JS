@@ -30,11 +30,14 @@ const setLeftView = (() => {
   const listIcon = document.createElement('i');
   listIcon.classList.add('fas');
   listIcon.classList.add('fa-list-alt');
+  listIcon.classList.add('btn-click');
   const defaultListText = document.createElement('span');
   defaultListText.textContent = 'General List';
+  defaultListText.classList.add('btn-click');
   const defaultList = document.createElement('button');
   defaultList.classList.add('projectList-btn');
   defaultList.classList.add('default-list-btn');
+  defaultList.classList.add('btn-click');
 
   const newProjectInput = document.createElement('input');
   newProjectInput.classList.add('input-formProject');
@@ -119,13 +122,16 @@ const setLeftView = (() => {
 
     const listItem = document.createElement('button');
     listItem.classList.add('projectList-btn');
+    listItem.classList.add('btn-click');
 
     const listIcon = document.createElement('i');
     listIcon.classList.add('far');
     listIcon.classList.add('fa-list-alt');
+    listIcon.classList.add('btn-click');
 
     const name = document.createElement('span');
     name.textContent = `${myProjectName}`;
+    name.classList.add('btn-click');
 
     const editIcon = document.createElement('i');
     editIcon.classList.add('edit-icon-left');
@@ -144,7 +150,7 @@ const setLeftView = (() => {
     myListsContainer.appendChild(listItem);
 
     myListsAndGeneralContainer.addEventListener('click', (e) => {
-      if (e.target.classList.contains('projectList-btn')) {
+      if (e.target.classList.contains('btn-click')) {
         const project = e.target.textContent;
         setMiddleView.clearTasks();
         setMiddleView.displayProjectMiddle(buildProject.findProject(project));

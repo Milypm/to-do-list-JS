@@ -53,7 +53,7 @@ const buildProject = (() => {
   };
 
   return {
-    projects, getProjects, addProject, editProject, deleteProject, findProject,
+    projects, projectObject, defaultProject, getProjects, addProject, editProject, deleteProject, findProject,
   };
 })();
 

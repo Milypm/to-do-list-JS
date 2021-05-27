@@ -1,12 +1,13 @@
 {
-  "name": "to-do-list-JS",
+  "name": "to-do-list-js",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode development",
-    "test": "jest"
+    "test": "jest",
+    "watch": "jest --watch *.js"
   },
   "repository": {
     "type": "git",
@@ -20,27 +21,43 @@
   },
   "homepage": "https://github.com/Milypm/to-do-list-JS#readme",
   "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
     "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
     "css-loader": "^5.2.4",
     "eslint": "^7.25.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "jest": "^27.0.1",
+    "jest-localstorage-mock": "^2.4.13",
     "style-loader": "^2.0.0",
     "stylelint": "^9.3.0",
     "stylelint-config-standard": "^18.3.0",
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "^3.19.0",
-    "webpack": "^5.37.0",
+    "webpack": "^5.37.1",
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
     "date-fns": "^2.21.1"
   },
   "jest": {
-    "modulePaths": ["/shared/vendor/modules"],
-    "moduleFileExtensions": ["js", "jsx"],
-    "moduleDirectories": ["node_modules", "bower_components", "shared"],
+    "verbose": true,
+    "resetMocks": false,
+    "setupFiles": ["jest-localstorage-mock"],
+    "modulePaths": [
+      "/shared/vendor/modules"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "bower_components",
+      "shared"
+    ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js",

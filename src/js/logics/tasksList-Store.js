@@ -30,6 +30,7 @@ const buildTask = (() => {
   const projects = buildProject.getProjects();
 
   const findProject = (taskTitle) => {
+    const projects = buildProject.getProjects();
     let currentProject;
     projects.forEach((projectObj) => {
       projectObj.content.forEach((taskObj) => {
@@ -42,6 +43,7 @@ const buildTask = (() => {
   };
 
   const findIndex = (taskTitle) => {
+    const projects = buildProject.getProjects();
     let index;
     let i = 0;
     projects.forEach((projectObj) => {
@@ -73,7 +75,7 @@ const buildTask = (() => {
   };
 
   return {
-    addTask, findProject, findIndex, editTask, deleteTask,
+    projects, addTask, findProject, findIndex, editTask, deleteTask,
   };
 })();
 

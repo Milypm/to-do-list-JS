@@ -297,7 +297,8 @@ const setMiddleView = (() => {
   document.addEventListener('DOMContentLoaded', displayProjectMiddle(setDefault()));
 
   return {
-    setMiddle, displayProjectMiddle, addTaskToProject, clearTasks,
+
+    setMiddle, displayProjectMiddle, addTaskToProject, clearTasks, myTasksBtn, myTasksForm
   };
 })();
 

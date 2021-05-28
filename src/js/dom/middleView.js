@@ -264,7 +264,7 @@ const setMiddleView = (() => {
         e.target.parentElement.parentElement.remove();
       }
     });
-    return { taskName, projectToEdit };
+    return { taskName, projectToEdit, taskItem };
   };
 
   const getPriorityFromTask = (taskObject) => {
@@ -297,8 +297,7 @@ const setMiddleView = (() => {
   document.addEventListener('DOMContentLoaded', displayProjectMiddle(setDefault()));
 
   return {
-
-    setMiddle, displayProjectMiddle, addTaskToProject, clearTasks, myTasksBtn, myTasksForm
+    setMiddle, displayProjectMiddle, addTaskToProject, clearTasks, myTasksBtn, myTasksForm, titleFormInput, descripFormInput, dateFormInput, priorityFormInput, newTaskSaveBtn, taskItem
   };
 })();
 

@@ -112,6 +112,9 @@ const setLeftView = (() => {
     projects.forEach((projectObj) => addProjectToProjects(projectObj));
   };
 
+  const listItem = document.createElement('button');
+  const editIcon = document.createElement('i');
+
   const addProjectToProjects = (project) => {
     let myProjectName;
     if (typeof project === 'string') {
@@ -120,7 +123,6 @@ const setLeftView = (() => {
       myProjectName = project.name;
     }
 
-    const listItem = document.createElement('button');
     listItem.classList.add('projectList-btn');
     listItem.classList.add('btn-click');
 
@@ -133,7 +135,6 @@ const setLeftView = (() => {
     name.textContent = `${myProjectName}`;
     name.classList.add('btn-click');
 
-    const editIcon = document.createElement('i');
     editIcon.classList.add('edit-icon-left');
     editIcon.classList.add('fas');
     editIcon.classList.add('fa-pen');
@@ -169,12 +170,25 @@ const setLeftView = (() => {
         e.target.parentElement.remove();
       }
     });
-    return { projectName, projectToEdit };
+    return { listItem, projectName, projectToEdit };
   };
 
   document.addEventListener('DOMContentLoaded', displayProjects());
 
-  return { setLeft, displayProjects, addProjectToProjects };
+  return {
+    setLeft,
+    displayProjects,
+    addProjectToProjects,
+    myListsBtn,
+    newProjectForm,
+    newProjectInput,
+    newProjectSaveBtn,
+    newProjectCancelBtn,
+    listItem,
+    projectName,
+    projectToEdit,
+    editIcon
+  };
 })();
 
 export default setLeftView;

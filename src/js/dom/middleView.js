@@ -105,7 +105,6 @@ const setMiddleView = (() => {
       if (title === '' || description === '' || date === 'mm/dd/yyyy') {
         alert('Please fill in description and date fields');
       } else {
-        console.log(date);
         buildTask.addTask(currentProject, title, description, date, priority);
         addTaskToProject(newTask, newPriority);
         clearForm();
@@ -132,8 +131,7 @@ const setMiddleView = (() => {
 
   const myTasksList = document.createElement('div');
   myTasksList.classList.add('mytasks-list');
-  const taskItem = document.createElement('button');
-  taskItem.classList.add('task-btn');
+  let taskItem;
   let taskIcon;
   let taskDescription;
   let taskDescriptionContainer;
@@ -203,6 +201,9 @@ const setMiddleView = (() => {
       color = '#76b62c';
     }
 
+    taskItem = document.createElement('button');
+    taskItem.classList.add('task-btn');
+
     taskIcon = document.createElement('i');
     taskIcon.classList.add('fas');
     taskIcon.classList.add('fa-check-circle');
@@ -242,11 +243,9 @@ const setMiddleView = (() => {
     myTasksList.appendChild(taskItem);
 
     myTasksList.addEventListener('click', (e) => {
-      if (e.target.classList.contains('task-btn')) {
-        const clickedTask = e.target.textContent;
-        setRightView.clearDetails();
-        setRightView.displayTaskDetails(clickedTask);
-      }
+      const clickedTask = e.target.textContent;
+      setRightView.clearDetails();
+      setRightView.displayTaskDetails(clickedTask);
     });
 
     taskItem.addEventListener('click', (e) => {
@@ -308,7 +307,6 @@ const setMiddleView = (() => {
     priorityFormInput,
     newTaskSaveBtn,
     myTasksList,
-    taskItem,
   };
 })();
 

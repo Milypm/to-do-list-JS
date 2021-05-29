@@ -17,12 +17,16 @@ You can visit the live project here: [Github page](https://milypm.github.io/to-d
 - Git
  
 ## How to run it
-- It's recommended to use Git's latest version.
+- It's recommended to use Git's latest version
 - Clone or download the repo: [to-do-list-JS](https://github.com/Milypm/to-do-list-JS) to your local system
     - Click on the "Code" green button and copy 'HTTPS URL'
     - **On an empty folder** on your local system, open the command-line: `git clone 'HTTPS URL'`
 - Go to the repo root directory
 - Right click on 'dist/index.html' file > Open with Live Server
+
+## Tests
+- Install Jest: 'npm install --save-dev jest'
+- Run 'npm run test'
 
 ## Authors
 **Mily Puente** :woman_technologist:

@@ -112,23 +112,6 @@ const setLeftView = (() => {
     projects.forEach((projectObj) => addProjectToProjects(projectObj));
   };
 
-  const showlistItem = () => {
-    let listIt = document.createElement('button');
-    listIt.classList.add('projectList-btn');
-    listIt.classList.add('btn-click');
-
-    return listIt;
-  };
-
-  const showEditIcon = () => {
-    const editIc = document.createElement('i');
-    editIc.classList.add('edit-icon-left');
-    editIc.classList.add('fas');
-    editIc.classList.add('fa-pen');
-
-    return editIc;
-  };
-
   const addProjectToProjects = (project) => {
     let myProjectName;
     if (typeof project === 'string') {
@@ -137,11 +120,9 @@ const setLeftView = (() => {
       myProjectName = project.name;
     }
 
-    const listItem = showlistItem();
-    const editIcon = showEditIcon();
-    // const listItem = document.createElement('button');
-    // listItem.classList.add('projectList-btn');
-    // listItem.classList.add('btn-click');
+    const listItem = document.createElement('button');
+    listItem.classList.add('projectList-btn');
+    listItem.classList.add('btn-click');
 
     const listIcon = document.createElement('i');
     listIcon.classList.add('far');
@@ -152,10 +133,10 @@ const setLeftView = (() => {
     name.textContent = `${myProjectName}`;
     name.classList.add('btn-click');
 
-    // const editIcon = document.createElement('i');
-    // editIcon.classList.add('edit-icon-left');
-    // editIcon.classList.add('fas');
-    // editIcon.classList.add('fa-pen');
+    const editIcon = document.createElement('i');
+    editIcon.classList.add('edit-icon-left');
+    editIcon.classList.add('fas');
+    editIcon.classList.add('fa-pen');
 
     const deleteIcon = document.createElement('i');
     deleteIcon.classList.add('delete-icon-left');
@@ -202,8 +183,6 @@ const setLeftView = (() => {
     newProjectInput,
     newProjectSaveBtn,
     newProjectCancelBtn,
-    showlistItem,
-    showEditIcon,
     projectName,
     projectToEdit,
   };

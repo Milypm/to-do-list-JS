@@ -67,9 +67,6 @@ const buildTask = (() => {
   };
 
   const deleteTask = (projectObj, taskIndex) => {
-    console.log(projectObj);
-    console.log(taskIndex);
-    console.log(projectObj.content);
     projectObj.content.splice(taskIndex, 1);
     localStorage.setItem('projects', JSON.stringify(projects));
   };

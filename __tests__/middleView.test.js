@@ -23,13 +23,13 @@ it('displays a form for adding a new task when clicking addTask button', () => {
   expect(setMiddleView.myTasksForm.style.display).not.toBe('none');
 });
 
-it('displays a a new task after clicking the save button', () => {
+it('displays a new task after clicking the save button', () => {
   buildAll.startProject();
-  setMiddleView.titleFormInput.click();
-  setMiddleView.titleFormInput.textContent = 'Going to the gym'
-  setMiddleView.ddescripFormInput.textContent = 'Routine Exerisw'
-  setMiddleView.dateFormInput.textContent = '5 Jun 2021'
-  setMiddleView.priorityFormInput.textContent = 'high'
+  setMiddleView.myTasksBtn.click();
+  setMiddleView.titleFormInput.value = 'Going to the gym';
+  setMiddleView.descripFormInput.value = 'Routine Exercise';
+  setMiddleView.dateFormInput.value = '2021-06-05';
+  setMiddleView.priorityFormInput.value = 'High';
   setMiddleView.newTaskSaveBtn.click();
   expect(setMiddleView.taskItem.textContent).toEqual('Going to the gym');
 });

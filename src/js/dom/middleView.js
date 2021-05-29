@@ -102,9 +102,10 @@ const setMiddleView = (() => {
       const newTask = title;
       const newPriority = priority;
       const currentProject = middleViewTitle.textContent;
-      if (title === '' || description === '' || date === 'mm / dd / yyyy') {
+      if (title === '' || description === '' || date === 'mm/dd/yyyy') {
         alert('Please fill in description and date fields');
       } else {
+        console.log(date);
         buildTask.addTask(currentProject, title, description, date, priority);
         addTaskToProject(newTask, newPriority);
         clearForm();
@@ -131,7 +132,8 @@ const setMiddleView = (() => {
 
   const myTasksList = document.createElement('div');
   myTasksList.classList.add('mytasks-list');
-  let taskItem;
+  const taskItem = document.createElement('button');
+  taskItem.classList.add('task-btn');
   let taskIcon;
   let taskDescription;
   let taskDescriptionContainer;
@@ -201,9 +203,6 @@ const setMiddleView = (() => {
       color = '#76b62c';
     }
 
-    taskItem = document.createElement('button');
-    taskItem.classList.add('task-btn');
-
     taskIcon = document.createElement('i');
     taskIcon.classList.add('fas');
     taskIcon.classList.add('fa-check-circle');
@@ -264,7 +263,7 @@ const setMiddleView = (() => {
         e.target.parentElement.parentElement.remove();
       }
     });
-    return { taskName, projectToEdit, taskItem };
+    return { taskName, projectToEdit };
   };
 
   const getPriorityFromTask = (taskObject) => {
@@ -297,7 +296,19 @@ const setMiddleView = (() => {
   document.addEventListener('DOMContentLoaded', displayProjectMiddle(setDefault()));
 
   return {
-    setMiddle, displayProjectMiddle, addTaskToProject, clearTasks, myTasksBtn, myTasksForm, titleFormInput, descripFormInput, dateFormInput, priorityFormInput, newTaskSaveBtn, taskItem
+    setMiddle,
+    displayProjectMiddle,
+    addTaskToProject,
+    clearTasks,
+    myTasksBtn,
+    myTasksForm,
+    titleFormInput,
+    descripFormInput,
+    dateFormInput,
+    priorityFormInput,
+    newTaskSaveBtn,
+    myTasksList,
+    taskItem,
   };
 })();
 

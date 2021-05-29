@@ -112,8 +112,22 @@ const setLeftView = (() => {
     projects.forEach((projectObj) => addProjectToProjects(projectObj));
   };
 
-  const listItem = document.createElement('button');
-  const editIcon = document.createElement('i');
+  const showlistItem = () => {
+    let listIt = document.createElement('button');
+    listIt.classList.add('projectList-btn');
+    listIt.classList.add('btn-click');
+
+    return listIt;
+  };
+
+  const showEditIcon = () => {
+    const editIc = document.createElement('i');
+    editIc.classList.add('edit-icon-left');
+    editIc.classList.add('fas');
+    editIc.classList.add('fa-pen');
+
+    return editIc;
+  };
 
   const addProjectToProjects = (project) => {
     let myProjectName;
@@ -123,8 +137,11 @@ const setLeftView = (() => {
       myProjectName = project.name;
     }
 
-    listItem.classList.add('projectList-btn');
-    listItem.classList.add('btn-click');
+    const listItem = showlistItem();
+    const editIcon = showEditIcon();
+    // const listItem = document.createElement('button');
+    // listItem.classList.add('projectList-btn');
+    // listItem.classList.add('btn-click');
 
     const listIcon = document.createElement('i');
     listIcon.classList.add('far');
@@ -135,9 +152,10 @@ const setLeftView = (() => {
     name.textContent = `${myProjectName}`;
     name.classList.add('btn-click');
 
-    editIcon.classList.add('edit-icon-left');
-    editIcon.classList.add('fas');
-    editIcon.classList.add('fa-pen');
+    // const editIcon = document.createElement('i');
+    // editIcon.classList.add('edit-icon-left');
+    // editIcon.classList.add('fas');
+    // editIcon.classList.add('fa-pen');
 
     const deleteIcon = document.createElement('i');
     deleteIcon.classList.add('delete-icon-left');
@@ -170,7 +188,7 @@ const setLeftView = (() => {
         e.target.parentElement.remove();
       }
     });
-    return { listItem, projectName, projectToEdit };
+    return { projectName, projectToEdit };
   };
 
   document.addEventListener('DOMContentLoaded', displayProjects());
@@ -184,10 +202,10 @@ const setLeftView = (() => {
     newProjectInput,
     newProjectSaveBtn,
     newProjectCancelBtn,
-    listItem,
+    showlistItem,
+    showEditIcon,
     projectName,
     projectToEdit,
-    editIcon
   };
 })();
 

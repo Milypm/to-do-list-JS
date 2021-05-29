@@ -34,8 +34,14 @@ it('displays a form for adding a new project when clicking myLists button', () =
 });
 
 it('adds a new project in MyLists after clicking Save button', () => {
-  newProject();
-  expect(setLeftView.listItem.textContent).toStrictEqual('Project One');
+  buildAll.startProject();
+  const listItem = setLeftView.showlistItem();
+  const editIcon = setLeftView.showEditIcon();
+  setLeftView.myListsBtn.click();
+  input.click();
+  input.value = 'Project One';
+  setLeftView.newProjectSaveBtn.click();
+  expect(listItem.textContent).toStrictEqual('Project One');
 });
 
 it('displays project form with projectName on the input field after clicking on editProject button', () => {

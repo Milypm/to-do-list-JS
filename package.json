@@ -36,8 +36,8 @@
     "stylelint-config-standard": "^18.3.0",
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "^3.19.0",
-    "webpack": "^5.37.1",
-    "webpack-cli": "^4.6.0"
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
   },
   "dependencies": {
     "date-fns": "^2.21.1",

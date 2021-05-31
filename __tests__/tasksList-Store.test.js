@@ -28,7 +28,24 @@ it('finds the index of a task in a project', () => {
   expect(buildTask.findIndex('Go to the vet')).toStrictEqual(1);
 });
 
-it('deletes a task from localstorage', () => {
+it('edits a task from localStorage', () => {
+  payTask();
+  let projects = JSON.parse(localStorage.getItem('projects'));
+  let projectObj = projects[1];
+  let task = projectObj.content[0];
+  task.title = 'Pay MasterCard';
+  task.description = 'Verify amount to pay';
+  task.dueDate = '1 Jun 2021';
+  task.priority = 'Urgent';
+  localStorage.setItem('projects', JSON.stringify(projects));
+  projects = JSON.parse(localStorage.getItem('projects'));
+  projectObj = projects[1];
+  task = projectObj.content[0];
+  expect(task.title).not.toBe('Pay credit card');
+  expect(task.description).not.toBe('Go to the bank and pay');
+});
+
+it('deletes a task from localStorage', () => {
   payTask();
   buildTask.addTask('New Project', 'Finish project', 'Work on the tests', '30 May 2021', 'Urgent');
   const projects = JSON.parse(localStorage.getItem('projects'));

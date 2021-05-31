@@ -1,6 +1,6 @@
 import buildProject from './projectsList-Store';
 
-const { format } = require('date-fns');
+import { format } from 'date-fns';
 
 const buildTask = (() => {
   const task = {

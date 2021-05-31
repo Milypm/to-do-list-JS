@@ -39,7 +39,7 @@ it('returns the project from localStorage', () => {
 it('edits a project from localStorage', () => {
   newProject();
   let projects = JSON.parse(localStorage.getItem('projects'));
-  let workProject = projects[1];
+  const workProject = projects[1];
   workProject.name = 'Work tasks';
   localStorage.setItem('projects', JSON.stringify(buildProject.projects));
   projects = JSON.parse(localStorage.getItem('projects'));

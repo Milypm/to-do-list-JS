@@ -31,7 +31,7 @@ it('finds the index of a task in a project', () => {
 it('edits a task from localStorage', () => {
   payTask();
   let projects = JSON.parse(localStorage.getItem('projects'));
-  let projectObj = projects[1];
+  const projectObj = projects[1];
   let task = projectObj.content[0];
   task.title = 'Pay MasterCard';
   task.description = 'Verify amount to pay';
@@ -39,8 +39,10 @@ it('edits a task from localStorage', () => {
   task.priority = 'Urgent';
   localStorage.setItem('projects', JSON.stringify(projects));
   projects = JSON.parse(localStorage.getItem('projects'));
-  projectObj = projects[1];
-  task = projectObj.content[0];
+  const [projectOne, projectTwo] = projects;
+  const projectContent = projectTwo.content;
+  const [taskOne] = projectContent;
+  task = taskOne;
   expect(task.title).not.toBe('Pay credit card');
   expect(task.description).not.toBe('Go to the bank and pay');
 });

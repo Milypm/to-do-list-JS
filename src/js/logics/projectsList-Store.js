@@ -20,7 +20,7 @@ const buildProject = (() => {
   };
 
   const addProject = (name) => {
-    const projects = getProjects();
+    const projects = buildProject.getProjects();
     projectObject.name = name;
     projects.push(projectObject);
     localStorage.setItem('projects', JSON.stringify(projects));

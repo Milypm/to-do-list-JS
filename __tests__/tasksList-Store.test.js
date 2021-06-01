@@ -11,15 +11,8 @@ const payTask = () => {
 
 it('finds a project looking by taskName', () => {
   payTask();
-  expect(buildTask.findProject('Pay credit card')).toStrictEqual({
- name: 'New Project',
-content: [{
- title: 'Pay credit card',
-    description: 'Go to the bank and pay',
-dueDate: '1 June 2021',
-priority: 'Urgent',
-}],
-});
+  const newProject = buildTask.findProject('Pay credit card');
+  expect(newProject.name).toStrictEqual('New Project');
 });
 
 it('finds the index of a task in a project', () => {
@@ -51,8 +44,8 @@ it('deletes a task from localStorage', () => {
   payTask();
   buildTask.addTask('New Project', 'Finish project', 'Work on the tests', '30 May 2021', 'Urgent');
   const projects = JSON.parse(localStorage.getItem('projects'));
-  const project = projects[1];
-  buildTask.deleteTask(project, 0);
-  const projectContent = project.content;
+  const [projectOne, projectTwo] = projects;
+  buildTask.deleteTask(projectTwo, 0);
+  const projectContent = projectTwo.content;
   expect(projectContent.length).toEqual(1);
 });

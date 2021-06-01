@@ -53,7 +53,7 @@ it('displays taskTitle on rightView (Task Details) after clicking on the specifi
   const taskPriority = document.getElementById('task-priority-id');
   expect(taskTitle.textContent).toBe('Title: Finish project');
   expect(taskDescription.textContent).toBe('Description: Work on last changes');
-  expect(taskDate.textContent).toBe('Due Date: 28 May 2021');
+  expect(taskDate.textContent).toBe('Due Date: 29 May 2021');
   expect(taskPriority.textContent).toBe('Priority: Urgent');
 });
 

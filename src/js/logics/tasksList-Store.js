@@ -11,7 +11,9 @@ const buildTask = (() => {
 
   const addTask = (project, title, description, date, priority) => {
     let currentProject;
-    const newDate = format(new Date(date), 'd MMMM yyyy');
+    const fecha = new Date(date);
+    const fechaT = new Date(fecha.getTime() - fecha.getTimezoneOffset() * -60000);
+    const newDate = format(fechaT, 'd MMMM yyyy');
     const projects = buildProject.getProjects();
     projects.forEach((projectObj) => {
       if (project === projectObj.name) {

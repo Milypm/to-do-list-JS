@@ -34,18 +34,22 @@ const setRightView = (() => {
 
     const titleDetail = document.createElement('p');
     titleDetail.classList.add('description-detail');
+    titleDetail.setAttribute('id', 'task-title-id');
     titleDetail.textContent = `Title: ${selectedTask.title}`;
 
     const descriptionDetail = document.createElement('p');
     descriptionDetail.classList.add('description-detail');
+    descriptionDetail.setAttribute('id', 'task-description-id');
     descriptionDetail.textContent = `Description: ${selectedTask.description}`;
 
     const dueDateDetail = document.createElement('p');
     dueDateDetail.classList.add('description-detail');
+    dueDateDetail.setAttribute('id', 'task-date-id');
     dueDateDetail.textContent = `Due Date: ${selectedTask.dueDate}`;
 
     const priorityDetail = document.createElement('p');
     priorityDetail.classList.add('description-detail');
+    priorityDetail.setAttribute('id', 'task-priority-id');
     priorityDetail.textContent = `Priority: ${selectedTask.priority}`;
 
     detailsContainer.appendChild(titleDetail);

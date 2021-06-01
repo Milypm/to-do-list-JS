@@ -102,7 +102,7 @@ const setMiddleView = (() => {
       const newTask = title;
       const newPriority = priority;
       const currentProject = middleViewTitle.textContent;
-      if (title === '' || description === '' || date === 'mm / dd / yyyy') {
+      if (title === '' || description === '' || date === 'mm/dd/yyyy') {
         alert('Please fill in description and date fields');
       } else {
         buildTask.addTask(currentProject, title, description, date, priority);
@@ -243,11 +243,9 @@ const setMiddleView = (() => {
     myTasksList.appendChild(taskItem);
 
     myTasksList.addEventListener('click', (e) => {
-      if (e.target.classList.contains('task-btn')) {
-        const clickedTask = e.target.textContent;
-        setRightView.clearDetails();
-        setRightView.displayTaskDetails(clickedTask);
-      }
+      const clickedTask = e.target.textContent;
+      setRightView.clearDetails();
+      setRightView.displayTaskDetails(clickedTask);
     });
 
     taskItem.addEventListener('click', (e) => {
@@ -297,7 +295,18 @@ const setMiddleView = (() => {
   document.addEventListener('DOMContentLoaded', displayProjectMiddle(setDefault()));
 
   return {
-    setMiddle, displayProjectMiddle, addTaskToProject, clearTasks,
+    setMiddle,
+    displayProjectMiddle,
+    addTaskToProject,
+    clearTasks,
+    myTasksBtn,
+    myTasksForm,
+    titleFormInput,
+    descripFormInput,
+    dateFormInput,
+    priorityFormInput,
+    newTaskSaveBtn,
+    myTasksList,
   };
 })();
 

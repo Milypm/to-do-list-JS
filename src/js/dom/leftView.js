@@ -174,7 +174,18 @@ const setLeftView = (() => {
 
   document.addEventListener('DOMContentLoaded', displayProjects());
 
-  return { setLeft, displayProjects, addProjectToProjects };
+  return {
+    setLeft,
+    displayProjects,
+    addProjectToProjects,
+    myListsBtn,
+    newProjectForm,
+    newProjectInput,
+    newProjectSaveBtn,
+    newProjectCancelBtn,
+    projectName,
+    projectToEdit,
+  };
 })();
 
 export default setLeftView;

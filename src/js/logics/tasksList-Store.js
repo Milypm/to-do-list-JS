@@ -1,6 +1,5 @@
+import { format } from 'date-fns';
 import buildProject from './projectsList-Store';
-
-const { format } = require('date-fns');
 
 const buildTask = (() => {
   const task = {
@@ -12,7 +11,9 @@ const buildTask = (() => {
 
   const addTask = (project, title, description, date, priority) => {
     let currentProject;
-    const newDate = format(new Date(date), 'd MMMM yyyy');
+    const fecha = new Date(date);
+    const fechaT = new Date(fecha.getTime() - fecha.getTimezoneOffset() * -60000);
+    const newDate = format(fechaT, 'd MMMM yyyy');
     const projects = buildProject.getProjects();
     projects.forEach((projectObj) => {
       if (project === projectObj.name) {
@@ -30,6 +31,7 @@ const buildTask = (() => {
   const projects = buildProject.getProjects();
 
   const findProject = (taskTitle) => {
+    const projects = buildProject.getProjects();
     let currentProject;
     projects.forEach((projectObj) => {
       projectObj.content.forEach((taskObj) => {
@@ -42,6 +44,7 @@ const buildTask = (() => {
   };
 
   const findIndex = (taskTitle) => {
+    const projects = buildProject.getProjects();
     let index;
     let i = 0;
     projects.forEach((projectObj) => {
@@ -65,15 +68,12 @@ const buildTask = (() => {
   };
 
   const deleteTask = (projectObj, taskIndex) => {
-    console.log(projectObj);
-    console.log(taskIndex);
-    console.log(projectObj.content);
     projectObj.content.splice(taskIndex, 1);
     localStorage.setItem('projects', JSON.stringify(projects));
   };
 
   return {
-    addTask, findProject, findIndex, editTask, deleteTask,
+    projects, addTask, findProject, findIndex, editTask, deleteTask,
   };
 })();
 

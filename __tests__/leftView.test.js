@@ -1,8 +1,7 @@
-import setLeftView from '../src/js/dom/leftView';
-import buildAll from '../src/js/build';
-
 import fs from 'fs';
 import path from 'path';
+import setLeftView from '../src/js/dom/leftView';
+import buildAll from '../src/js/build';
 
 const html = fs.readFileSync(path.resolve(__dirname, '../docs/index.html'), 'utf8');
 

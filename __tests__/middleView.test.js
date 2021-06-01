@@ -1,8 +1,7 @@
-import setMiddleView from '../src/js/dom/middleView';
-import buildAll from '../src/js/build';
-
 import fs from 'fs';
 import path from 'path';
+import setMiddleView from '../src/js/dom/middleView';
+import buildAll from '../src/js/build';
 
 const html = fs.readFileSync(path.resolve(__dirname, '../docs/index.html'), 'utf8');
 
